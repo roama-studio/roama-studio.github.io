@@ -1,0 +1,23 @@
+/* ROAMA, Atlas hero: the still of the scroll scene (reduced motion, Save-Data, no WebGL).
+   Copy into the site's CSS next to <scene-3d>. It repeats the player's own fix (TASK-0455 r2/r3) so it
+   holds even if the player folder is re-copied from the engine:
+   - the still is one screen high (the portrait poster no longer makes a 1920 px block cut to the head);
+   - the poster keeps its own shape in the middle and its sides fade into #121212 (no straight shadow edge). */
+scene-3d[mode="scroll"][data-state="poster"] {
+  aspect-ratio: auto !important;
+  height: 100vh !important;
+  height: min(100svh, 150vw) !important;
+  max-height: none !important;
+  background: #121212;
+}
+scene-3d[mode="scroll"][data-state="poster"] > img {
+  inset: auto !important;
+  top: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: auto !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 84%, transparent 100%);
+}

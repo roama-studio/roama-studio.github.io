@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas hero (scroll) — 3D</title>
+<style>
+  :root { --bg: #121212; --ink: #f4f1ec; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  section { padding: clamp(24px, 6vw, 72px) clamp(16px, 5vw, 64px); }
+  h1, h2 { margin: 0 0 12px; font-weight: 600; line-height: 1.15; }
+  h1 { font-size: clamp(28px, 5vw, 48px); }
+  p { max-width: 60ch; margin: 0; }
+  scene-3d[mode="viewer"] { max-width: 1280px; margin: 24px auto 0; }
+  /* Reduced motion / Save-Data / no WebGL: the scroll scene is a still in the flow. The poster is portrait
+     (it frames the phone), so the still block is one screen high and the poster sits whole in its middle
+     on #121212 instead of a 1920 px tall block cut by the screen (QA TASK-0455 r2). */
+  scene-3d[mode="scroll"][data-state="poster"] {
+    aspect-ratio: auto !important; height: 100vh !important; height: min(100svh, 150vw) !important;
+    max-height: none !important; background: #121212;
+  }
+  /* r3: the poster keeps its own shape in the middle and its sides fade into #121212, so the poster's
+     soft shadow does not end in a straight line on a wide screen. */
+  scene-3d[mode="scroll"][data-state="poster"] > img {
+    inset: auto !important; top: 0 !important; left: 50% !important; transform: translateX(-50%) !important;
+    width: auto !important; max-width: 100% !important; height: 100% !important;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 84%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 84%, transparent 100%);
+  }
+  .tall { min-height: 60vh; }
+</style>
+<link rel="stylesheet" href="scene-3d/vendor/lenis/lenis.css">
+<script type="module" src="scene-3d/smooth-scroll.js"></script>
+<script type="module" src="scene-3d/scene-3d.js"></script>
+</head>
+<body>
+<section>
+  <h1>Atlas hero (scroll)</h1>
+  <p>Drag to turn the model. It loads when it comes near the screen; until then (and with reduced motion) the poster shows.</p>
+  <scene-3d mode="viewer" src="scene-3d.json" label="Atlas hero (scroll)"></scene-3d>
+</section>
+<section><h2>Scroll scene</h2><p>Scroll down: the section stays on screen while the camera moves.</p></section>
+<scene-3d mode="scroll" src="scene-3d.json" label="Atlas hero (scroll)" length="200">
+  <h2 data-at="0.7" style="position:absolute; left:clamp(16px, 6vw, 72px); bottom:12%; margin:0;
+      font-size:clamp(32px, 6vw, 72px); font-weight:500">Atlas hero (scroll)</h2>
+</scene-3d>
+<section class="tall"><h2>After the scene</h2><p>The page scrolls on as usual.</p></section>
+</body>
+</html>

@@ -1,0 +1,329 @@
+{
+  "name": "Atlas hero (scroll)",
+  "models": {
+    "desktop": "models/desktop.glb",
+    "mobile": "models/mobile.glb"
+  },
+  "poster": "models/poster.webp",
+  "aspect": 0.6667,
+  "frame": {
+    "width": 0.419,
+    "height": 0.778
+  },
+  "phone_aspect": 0.8,
+  "background": "#121212",
+  "camera": {
+    "position": [
+      2.03,
+      -1.7,
+      0.78
+    ],
+    "target": [
+      0,
+      0,
+      0.63
+    ],
+    "fov": 24
+  },
+  "scroll": {
+    "path": "smooth",
+    "keys": [
+      {
+        "at": 0,
+        "nodes": {
+          "atlas_head": {
+            "rotation": [
+              16,
+              0,
+              6
+            ]
+          },
+          "atlas_face_light": {
+            "scale": [
+              0.001,
+              0.001,
+              0.001
+            ]
+          },
+          "atlas_face_triumph": {
+            "scale": [
+              0.001,
+              0.001,
+              0.001
+            ]
+          },
+          "atlas_chest_light": {
+            "scale": [
+              1,
+              1,
+              0.001
+            ]
+          },
+          "atlas_antenna_glow": {
+            "scale": [
+              0.001,
+              0.001,
+              0.001
+            ]
+          },
+          "atlas_back_light": {
+            "scale": [
+              0.001,
+              0.001,
+              0.001
+            ]
+          },
+          "atlas_arm_wave": {
+            "rotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          "atlas_forearm_wave": {
+            "rotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.35,
+        "camera": {
+          "orbit": {
+            "angle": 40,
+            "radius": 2.55,
+            "height": 0.15
+          },
+          "target": [
+            0,
+            0,
+            0.63
+          ],
+          "fov": 24
+        },
+        "nodes": {
+          "atlas_head": {
+            "rotation": [
+              -4,
+              0,
+              4
+            ]
+          },
+          "atlas_face_light": {
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "atlas_face_triumph": {
+            "scale": [
+              0.001,
+              0.001,
+              0.001
+            ]
+          },
+          "atlas_chest_light": {
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "atlas_antenna_glow": {
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "atlas_back_light": {
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "atlas_arm_wave": {
+            "rotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          "atlas_forearm_wave": {
+            "rotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.9,
+        "nodes": {
+          "atlas_face_light": {
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "atlas_face_triumph": {
+            "scale": [
+              0.001,
+              0.001,
+              0.001
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.915,
+        "nodes": {
+          "atlas_face_light": {
+            "scale": [
+              0.001,
+              0.001,
+              0.001
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.93,
+        "nodes": {
+          "atlas_face_triumph": {
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      {
+        "at": 1,
+        "camera": {
+          "orbit": {
+            "angle": -10,
+            "radius": 2.3,
+            "height": 0.12
+          },
+          "target": [
+            0,
+            0,
+            0.65
+          ],
+          "fov": 24
+        },
+        "nodes": {
+          "atlas_head": {
+            "rotation": [
+              -6,
+              0,
+              -8
+            ]
+          },
+          "atlas_face_light": {
+            "scale": [
+              0.001,
+              0.001,
+              0.001
+            ]
+          },
+          "atlas_face_triumph": {
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "atlas_arm_wave": {
+            "rotation": [
+              0,
+              100,
+              0
+            ]
+          },
+          "atlas_forearm_wave": {
+            "rotation": [
+              0,
+              55,
+              0
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "lighting": {
+    "preset": "dark_cinematic",
+    "ambient": 0.06,
+    "exposure": 1.0,
+    "lights": [
+      {
+        "name": "key",
+        "position": [
+          -0.80549,
+          -2.082221,
+          0.388494
+        ],
+        "color": "#fff1de",
+        "intensity": 4.38616,
+        "shadow": false
+      },
+      {
+        "name": "rim",
+        "position": [
+          1.27402,
+          0.587148,
+          2.498646
+        ],
+        "color": "#cfdcff",
+        "intensity": 9.259924,
+        "shadow": true
+      },
+      {
+        "name": "glint",
+        "position": [
+          1.586784,
+          -0.226127,
+          -0.986397
+        ],
+        "color": "#ffffff",
+        "intensity": 1.341536,
+        "shadow": false
+      }
+    ],
+    "tone": "agx",
+    "environment": {
+      "file": "models/environment.hdr",
+      "intensity": 0.35,
+      "rotation": 120,
+      "name": "studio"
+    }
+  },
+  "glow": [],
+  "steam": [],
+  "ripple": [],
+  "water": [],
+  "contact": {
+    "file": "models/contact.png",
+    "center": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "size": 1.305003249645233
+  },
+  "post": {
+    "bloom": 0.02,
+    "grain": 0.035,
+    "vignette": 0.2
+  }
+}
