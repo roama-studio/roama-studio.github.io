@@ -103,6 +103,7 @@ export async function createPlayer(lib, host, manifest, options) {
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' })
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2))
+  renderer.debug.checkShaderErrors = /[?&]debug3d\b/.test(globalThis.location?.search ?? '') // ROAMA r4b: production setting
   renderer.outputColorSpace = THREE.SRGBColorSpace
   // The poster's view transform: AgX, or Khronos PBR Neutral when the colour is the brand's (color_fidelity).
   renderer.toneMapping = light?.tone === 'neutral' ? THREE.NeutralToneMapping : THREE.AgXToneMapping
@@ -391,6 +392,7 @@ export async function createPlayer(lib, host, manifest, options) {
   }
   // The bloom frame: everything but the glowing parts drawn black (sprites hidden), then put back.
   const black = new THREE.MeshBasicMaterial({ color: 0x000000 })
+  let shadowsBuilt = false
   function renderBloom() {
     const materials = new Map()
     const hidden = []
@@ -399,7 +401,7 @@ export async function createPlayer(lib, host, manifest, options) {
       if (o.isMesh) { materials.set(o, o.material); o.material = black } else if (o.isSprite && o.visible) { hidden.push(o); o.visible = false }
     })
     const shadows = renderer.shadowMap.autoUpdate
-    renderer.shadowMap.autoUpdate = false
+    renderer.shadowMap.autoUpdate = shadowsBuilt ? false : shadows // ROAMA r4b: no empty shadow map on the first frame
     bloomComposer.render()
     renderer.shadowMap.autoUpdate = shadows
     for (const [o, m] of materials) o.material = m
@@ -409,6 +411,7 @@ export async function createPlayer(lib, host, manifest, options) {
     if (!composer) return renderer.render(scene, camera)
     if (bloomComposer) renderBloom()
     composer.render()
+    shadowsBuilt = true
   }
 
   function resize() {
@@ -422,6 +425,9 @@ export async function createPlayer(lib, host, manifest, options) {
     }
     camera.aspect = width / height
     camera.fov = verticalFov(fovH, camera.aspect, manifest.aspect ?? 1.6, frame)
+    const shift = parseFloat(getComputedStyle(host).getPropertyValue('--scene-shift')) || 0 // ROAMA r4b: view offset
+    if (shift) camera.setViewOffset(width, height, -shift * width, 0, width, height)
+    else camera.clearViewOffset()
     camera.updateProjectionMatrix()
     render()
   }

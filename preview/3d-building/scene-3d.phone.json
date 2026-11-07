@@ -1,0 +1,514 @@
+{
+  "name": "ROAMA round 4b: cutaway building with floors",
+  "models": {
+    "desktop": "models/desktop.glb",
+    "mobile": "models/mobile.glb"
+  },
+  "poster": "models/poster.webp",
+  "aspect": 1.6,
+  "frame": {
+    "width": 0.4519,
+    "height": 0.899
+  },
+  "phone_aspect": 0.8042,
+  "background": "#0B0907",
+  "camera": {
+    "position": [
+      8,
+      -59,
+      12.5
+    ],
+    "target": [
+      0,
+      0,
+      11.6
+    ],
+    "fov": 40
+  },
+  "scroll": {
+    "path": "smooth",
+    "keys": [
+      {
+        "at": 0,
+        "camera": {
+          "position": [
+            4,
+            -30,
+            11.5
+          ],
+          "target": [
+            0,
+            0,
+            11.2
+          ],
+          "fov": 40
+        }
+      },
+      {
+        "at": 0.00467,
+        "camera": {
+          "position": [
+            0.3,
+            -2.5,
+            1.5
+          ],
+          "target": [
+            0.3,
+            0.3,
+            1.45
+          ],
+          "fov": 36
+        }
+      },
+      {
+        "at": 0.02284,
+        "camera": {
+          "position": [
+            -0.2,
+            -2.45,
+            1.2
+          ],
+          "target": [
+            0.35,
+            0.3,
+            0.85
+          ],
+          "fov": 33
+        }
+      },
+      {
+        "at": 0.05331,
+        "camera": {
+          "position": [
+            0.15,
+            -2.45,
+            1.05
+          ],
+          "target": [
+            0.35,
+            0.2,
+            0.8
+          ],
+          "fov": 28
+        }
+      },
+      {
+        "at": 0.0829,
+        "camera": {
+          "position": [
+            0.3,
+            -2.5,
+            4.5
+          ],
+          "target": [
+            0.3,
+            0.3,
+            4.45
+          ],
+          "fov": 36
+        }
+      },
+      {
+        "at": 0.13119,
+        "camera": {
+          "position": [
+            -0.2,
+            -2.45,
+            4.2
+          ],
+          "target": [
+            0.35,
+            0.3,
+            3.85
+          ],
+          "fov": 33
+        }
+      },
+      {
+        "at": 0.18768,
+        "camera": {
+          "position": [
+            0.15,
+            -2.45,
+            4.05
+          ],
+          "target": [
+            0.35,
+            0.2,
+            3.8
+          ],
+          "fov": 28
+        }
+      },
+      {
+        "at": 0.23387,
+        "camera": {
+          "position": [
+            0.3,
+            -2.5,
+            7.5
+          ],
+          "target": [
+            0.3,
+            0.3,
+            7.45
+          ],
+          "fov": 36
+        }
+      },
+      {
+        "at": 0.30103,
+        "camera": {
+          "position": [
+            -0.2,
+            -2.45,
+            7.2
+          ],
+          "target": [
+            0.35,
+            0.3,
+            6.85
+          ],
+          "fov": 33
+        }
+      },
+      {
+        "at": 0.37227,
+        "camera": {
+          "position": [
+            0.15,
+            -2.45,
+            7.05
+          ],
+          "target": [
+            0.35,
+            0.2,
+            6.8
+          ],
+          "fov": 28
+        }
+      },
+      {
+        "at": 0.42674,
+        "camera": {
+          "position": [
+            0.3,
+            -2.5,
+            10.5
+          ],
+          "target": [
+            0.3,
+            0.3,
+            10.45
+          ],
+          "fov": 36
+        }
+      },
+      {
+        "at": 0.5015,
+        "camera": {
+          "position": [
+            -0.2,
+            -2.45,
+            10.2
+          ],
+          "target": [
+            0.35,
+            0.3,
+            9.85
+          ],
+          "fov": 33
+        }
+      },
+      {
+        "at": 0.57624,
+        "camera": {
+          "position": [
+            0.15,
+            -2.45,
+            10.05
+          ],
+          "target": [
+            0.35,
+            0.2,
+            9.8
+          ],
+          "fov": 28
+        }
+      },
+      {
+        "at": 0.63064,
+        "camera": {
+          "position": [
+            0.3,
+            -2.5,
+            13.5
+          ],
+          "target": [
+            0.3,
+            0.3,
+            13.45
+          ],
+          "fov": 36
+        }
+      },
+      {
+        "at": 0.70174,
+        "camera": {
+          "position": [
+            -0.2,
+            -2.45,
+            13.2
+          ],
+          "target": [
+            0.35,
+            0.3,
+            12.85
+          ],
+          "fov": 33
+        }
+      },
+      {
+        "at": 0.76871,
+        "camera": {
+          "position": [
+            0.15,
+            -2.45,
+            13.05
+          ],
+          "target": [
+            0.35,
+            0.2,
+            12.8
+          ],
+          "fov": 28
+        }
+      },
+      {
+        "at": 0.81472,
+        "camera": {
+          "position": [
+            0.3,
+            -2.5,
+            16.5
+          ],
+          "target": [
+            0.3,
+            0.3,
+            16.45
+          ],
+          "fov": 36
+        }
+      },
+      {
+        "at": 0.87091,
+        "camera": {
+          "position": [
+            -0.2,
+            -2.45,
+            16.2
+          ],
+          "target": [
+            0.35,
+            0.3,
+            15.85
+          ],
+          "fov": 33
+        }
+      },
+      {
+        "at": 0.91884,
+        "camera": {
+          "position": [
+            0.15,
+            -2.45,
+            16.05
+          ],
+          "target": [
+            0.35,
+            0.2,
+            15.8
+          ],
+          "fov": 28
+        }
+      },
+      {
+        "at": 0.94812,
+        "camera": {
+          "position": [
+            0.3,
+            -2.5,
+            19.5
+          ],
+          "target": [
+            0.3,
+            0.3,
+            19.45
+          ],
+          "fov": 36
+        }
+      },
+      {
+        "at": 0.97813,
+        "camera": {
+          "position": [
+            -0.6,
+            -1.9,
+            19.75
+          ],
+          "target": [
+            0.3,
+            2.0,
+            19.5
+          ],
+          "fov": 50
+        }
+      },
+      {
+        "at": 1,
+        "camera": {
+          "position": [
+            -0.1,
+            -1.0,
+            19.7
+          ],
+          "target": [
+            0.4,
+            2.2,
+            19.55
+          ],
+          "fov": 50
+        }
+      }
+    ]
+  },
+  "lighting": {
+    "preset": "dark_cinematic",
+    "ambient": 0.06,
+    "exposure": 0.9,
+    "lights": [
+      {
+        "name": "key",
+        "position": [
+          -71.525441,
+          -35.285897,
+          1.89972
+        ],
+        "color": "#fff1de",
+        "intensity": 4.38616,
+        "shadow": false
+      },
+      {
+        "name": "rim",
+        "position": [
+          48.212674,
+          -17.896858,
+          77.50908
+        ],
+        "color": "#cfdcff",
+        "intensity": 9.259924,
+        "shadow": true
+      },
+      {
+        "name": "glint",
+        "position": [
+          36.191262,
+          -41.796152,
+          -48.201745
+        ],
+        "color": "#ffffff",
+        "intensity": 1.341536,
+        "shadow": false
+      }
+    ],
+    "tone": "neutral",
+    "environment": {
+      "file": "models/environment.hdr",
+      "intensity": 0.35,
+      "rotation": 30,
+      "name": "studio"
+    }
+  },
+  "glow": [
+    {
+      "color": "#FFC83D",
+      "power": 10,
+      "flicker": 0,
+      "node": "lamp_ada",
+      "intensity": 0.63662
+    },
+    {
+      "color": "#FFC83D",
+      "power": 10,
+      "flicker": 0,
+      "node": "lamp_maya",
+      "intensity": 0.63662
+    },
+    {
+      "color": "#FFC83D",
+      "power": 9,
+      "flicker": 0,
+      "node": "lamp_iris",
+      "intensity": 0.572958
+    },
+    {
+      "color": "#FFC83D",
+      "power": 11,
+      "flicker": 0,
+      "node": "lamp_max",
+      "intensity": 0.700282
+    },
+    {
+      "color": "#b9cdf0",
+      "power": 55,
+      "flicker": 0.05,
+      "node": "screens_max",
+      "intensity": 3.501409
+    },
+    {
+      "color": "#FFC83D",
+      "power": 10,
+      "flicker": 0,
+      "node": "lamp_quinn",
+      "intensity": 0.63662
+    },
+    {
+      "color": "#FFC83D",
+      "power": 8,
+      "flicker": 0,
+      "node": "lamp_theo",
+      "intensity": 0.509296
+    },
+    {
+      "color": "#ffd6a0",
+      "power": 16,
+      "flicker": 0,
+      "node": "studio_theo",
+      "intensity": 1.018592
+    },
+    {
+      "color": "#FFC83D",
+      "power": 30,
+      "flicker": 0,
+      "node": "lamp_owner",
+      "intensity": 1.909859
+    }
+  ],
+  "steam": [],
+  "ripple": [],
+  "water": [],
+  "contact": {
+    "file": "models/contact.png",
+    "center": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "size": 74.39799690246583
+  },
+  "post": {
+    "bloom": 0.03,
+    "grain": 0.035,
+    "vignette": 0.25
+  }
+}
