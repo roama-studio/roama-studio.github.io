@@ -23,8 +23,8 @@
 <link rel="icon" href="./favicon.ico" sizes="32x32">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-  <script type="module" crossorigin src="./assets/roama-eBK1hVB_.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/roama-Dz1iKXne.css">
+  <script type="module" crossorigin src="./assets/roama-C1Ftf4i4.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/roama-B2Sqe-un.css">
   <link rel="preload" href="./assets/Onest-Variable-C_399t6n.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./assets/Unbounded-Variable-I12xPPHz.woff2" as="font" type="font/woff2" crossorigin>
 </head>
@@ -74,7 +74,7 @@
       </div>
       <div class="hero3__stage">
         <link rel="stylesheet" href="./3d/scene-3d-still.css">
-        <scene-3d class="hero3__scene" src="/preview/3d/scene-3d.json" mode="scroll" length="200" label="Атлас — робот ROAMA"></scene-3d>
+        <scene-3d class="hero3__scene" src="/preview/3d/scene-3d.json" mode="scroll" length="200" label="Атлас, робот ROAMA"></scene-3d>
         <script type="module" src="./3d/scene-3d/scene-3d.js"></script>
       </div>
     </section>
@@ -106,7 +106,17 @@
       <div class="sec__head">
         <h2 class="display sec__title reveal" id="process-title">Як це відбувається</h2>
       </div>
-      <div class="steps2" data-steps>
+      <div class="scene-wide scene-wide--process">
+        <scene-3d class="scene-wide__scene" src="/preview/3d/scene-3d-process.json" mode="scroll" length="500" label="Атлас показує, як працює ШІ-команда">
+          <p class="scene-step" data-at="0.02" data-span="0.12" style="--i:0"><span class="scene-step__n">01</span> Заявка</p>
+          <p class="scene-step" data-at="0.2" data-span="0.12" style="--i:1"><span class="scene-step__n">02</span> Бриф і ТЗ</p>
+          <p class="scene-step" data-at="0.4" data-span="0.12" style="--i:2"><span class="scene-step__n">03</span> Дизайн на погодження</p>
+          <p class="scene-step" data-at="0.6" data-span="0.12" style="--i:3"><span class="scene-step__n">04</span> Розробка</p>
+          <p class="scene-step" data-at="0.8" data-span="0.12" style="--i:4"><span class="scene-step__n">05</span> Перевірка QA на телефоні й компʼютері · запуск і супровід</p>
+        </scene-3d>
+        <script type="module" src="./3d/scene-3d/scene-3d.js"></script>
+      </div>
+      <div class="steps2 steps2--scene" data-steps>
         <div class="steps2__visual" aria-hidden="true">
           <div class="steps2__glow"></div>
           <picture><source type="image/avif" srcset="./assets/neutral-480-C1OFXA9A.avif 480w, ./assets/neutral-768-BJl3CQTR.avif 768w, ./assets/neutral-1024-CqcGAkYN.avif 1024w" sizes="360px"><source type="image/webp" srcset="./assets/neutral-480-CGH3Q7Ye.webp 480w, ./assets/neutral-768-Cv-dCWQv.webp 768w, ./assets/neutral-1024-BJAW-Kg0.webp 1024w" sizes="360px"><img src="./assets/neutral-1024-CaWHx3yV.png" srcset="./assets/neutral-480-BWz8WQGo.png 480w, ./assets/neutral-768-B983UBqT.png 768w, ./assets/neutral-1024-CaWHx3yV.png 1024w" sizes="360px" width="1024" height="512" alt="" class="steps2__pic" data-step-pic="true" loading="lazy" decoding="async"></picture>
@@ -162,6 +172,10 @@
 
 
 </section>
+    <div class="scene-wide scene-wide--wave roama-container">
+      <scene-3d class="scene-wide__scene" src="/preview/3d/scene-3d-contact.json" mode="scroll" length="120" label="Атлас махає рукою"></scene-3d>
+      <script type="module" src="./3d/scene-3d/scene-3d.js"></script>
+    </div>
   </main>
 
   <!-- params: lang (uk|de). Impressum and the privacy policy are linked from every page in both languages. -->

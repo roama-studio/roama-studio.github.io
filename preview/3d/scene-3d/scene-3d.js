@@ -105,18 +105,15 @@ class Scene3DElement extends HTMLElement {
     const saveData = navigator.connection?.saveData === true
     if (this.reduced || saveData || !hasWebGL()) {
       if (mode === 'scroll') { // a still in the flow, not a pinned screen
-        // TASK-0455 r2: a portrait poster in a wide screen made a block taller than the screen (only the
-        // head showed). The still keeps the full width, the poster's shape up to one screen high; the
-        // poster (object-fit: contain) sits whole in its middle on the manifest background.
-        this.style.aspectRatio = ''
-        this.style.height = `min(100svh, ${(100 / (m.aspect ?? 1.6)).toFixed(2)}vw)`
-        // TASK-0455 r3: on a wide screen the poster's soft Cycles shadow ended in a straight line at the
-        // image's own edge. The still keeps the image at its own shape in the middle and fades its sides
-        // into the background, so the shadow melts away like the 3D's contact shadow.
-        if (this.poster) {
-          const fade = 'linear-gradient(to right, transparent 0%, #000 24%, #000 84%, transparent 100%)'
-          Object.assign(this.poster.style, { inset: 'auto', top: '0', left: '50%', width: 'auto', maxWidth: '100%',
-            height: '100%', transform: 'translateX(-50%)', maskImage: fade, webkitMaskImage: fade })
+        this.style.height = ''
+        this.style.aspectRatio = String(m.aspect ?? 1.6)
+        // A portrait poster in a wide block: never taller than the screen, the poster
+        // (object-fit: contain) then shows the whole model (TASK-0455 QA, round 3).
+        if (!this.style.width) this.style.width = '100%' // full width; only the height is clamped
+        if (!this.style.maxHeight) this.style.maxHeight = '100svh'
+        if (this.poster) { // the image at its own shape in the middle, its sides melting into the background
+          const fade = 'linear-gradient(to right, transparent, #000 15%, #000 85%, transparent)'
+          Object.assign(this.poster.style, { width: 'auto', maxWidth: '100%', left: '50%', right: 'auto', transform: 'translateX(-50%)', maskImage: fade, webkitMaskImage: fade })
         }
       }
       this.dataset.state = 'poster'
@@ -141,6 +138,8 @@ class Scene3DElement extends HTMLElement {
       this.watch?.disconnect()
       this.trigger?.kill(true)
       this.player?.dispose()
+      this.spacer?.remove()
+      this.spacer = null
       this.started = false
     })
   }
@@ -156,7 +155,17 @@ class Scene3DElement extends HTMLElement {
   showPoster() {
     if (!this.manifest.poster || this.poster) return
     this.poster = document.createElement('img')
-    this.poster.src = new URL(this.manifest.poster, this.manifestUrl).href
+    const m = this.manifest
+    const url = (path) => new URL(path, this.manifestUrl).href
+    // Its own size (no layout shift, QA bug #1 round 3) and a phone size: 1000 px file only on wide screens.
+    const [w, h] = m.poster_size ?? [1000, 1500]
+    this.poster.width = w
+    this.poster.height = h
+    if (m.poster_small) {
+      this.poster.srcset = `${url(m.poster_small)} ${Math.round(w * 0.6)}w, ${url(m.poster)} ${w}w`
+      this.poster.sizes = '(max-width: 768px) 100vw, 1000px'
+    }
+    this.poster.src = url(m.poster)
     this.poster.alt = ''
     this.poster.decoding = 'async'
     this.poster.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block'
@@ -193,6 +202,7 @@ class Scene3DElement extends HTMLElement {
   async load() {
     const m = this.manifest
     const small = innerWidth <= Number(this.getAttribute('mobile') ?? 768)
+    this.small = small
     const modelUrl = new URL(small ? m.models.mobile : m.models.desktop, this.manifestUrl).href
     const [lib, motion] = await Promise.all([loadThree(), this.mode === 'scroll' ? loadGsap() : null])
     this.player = await createPlayer(lib, this, m, {
@@ -227,15 +237,32 @@ class Scene3DElement extends HTMLElement {
       lenis.scene3dSynced = true
     }
     const state = { progress: 0 }
+    const length = Number(this.getAttribute('length') ?? 200)
+    // The scene holds with CSS sticky over a spacer of the pin's length, not with GSAP's
+    // position:fixed pin. Switching to fixed mid-scroll counted as a layout shift (CLS 0.16-0.23 on the
+    // phone home pages, QA bug #1 round 3); sticky moves with the scroll and is no shift.
+    // pin="gsap" keeps the old fixed pin (for a parent that clips with overflow:hidden).
+    const sticky = this.getAttribute('pin') !== 'gsap'
+    let spacer
+    if (sticky) {
+      spacer = document.createElement('div')
+      spacer.className = 'scene-3d-spacer'
+      spacer.setAttribute('aria-hidden', 'true')
+      spacer.style.height = `${length}vh`
+      Object.assign(this.style, { position: 'sticky', top: '0' })
+      this.after(spacer)
+      this.spacer = spacer
+    }
     const tween = gsap.to(state, {
       progress: 1,
       ease: 'none',
       onUpdate: () => { this.player.seek(state.progress); this.showText(state.progress) },
       scrollTrigger: {
-        trigger: this,
-        start: 'top top',
-        end: `+=${Number(this.getAttribute('length') ?? 200)}%`,
-        pin: true,
+        // A stuck element moves with the screen; the spacer right after it does not, so it is measured.
+        trigger: sticky ? spacer : this,
+        start: sticky ? () => `top ${this.offsetHeight}px` : 'top top',
+        end: sticky ? () => `+=${spacer.offsetHeight}` : `+=${length}%`,
+        pin: !sticky,
         scrub: scrubFor(this.getAttribute('scrub'), smooth),
       },
     })

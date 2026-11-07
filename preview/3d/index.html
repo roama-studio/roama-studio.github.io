@@ -15,21 +15,6 @@
   h1 { font-size: clamp(28px, 5vw, 48px); }
   p { max-width: 60ch; margin: 0; }
   scene-3d[mode="viewer"] { max-width: 1280px; margin: 24px auto 0; }
-  /* Reduced motion / Save-Data / no WebGL: the scroll scene is a still in the flow. The poster is portrait
-     (it frames the phone), so the still block is one screen high and the poster sits whole in its middle
-     on #121212 instead of a 1920 px tall block cut by the screen (QA TASK-0455 r2). */
-  scene-3d[mode="scroll"][data-state="poster"] {
-    aspect-ratio: auto !important; height: 100vh !important; height: min(100svh, 150vw) !important;
-    max-height: none !important; background: #121212;
-  }
-  /* r3: the poster keeps its own shape in the middle and its sides fade into #121212, so the poster's
-     soft shadow does not end in a straight line on a wide screen. */
-  scene-3d[mode="scroll"][data-state="poster"] > img {
-    inset: auto !important; top: 0 !important; left: 50% !important; transform: translateX(-50%) !important;
-    width: auto !important; max-width: 100% !important; height: 100% !important;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 84%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 84%, transparent 100%);
-  }
   .tall { min-height: 60vh; }
 </style>
 <link rel="stylesheet" href="scene-3d/vendor/lenis/lenis.css">

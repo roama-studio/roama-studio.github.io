@@ -5,6 +5,8 @@
     "mobile": "models/mobile.glb"
   },
   "poster": "models/poster.webp",
+  "poster_small": "models/poster-600.webp",
+  "poster_size": [1000, 1500],
   "aspect": 0.6667,
   "frame": {
     "width": 0.419,
