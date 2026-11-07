@@ -1,0 +1,4 @@
+{
+  "look": {"node": "atlas_head", "yaw": 8, "pitch": 4, "min_width": 769, "pointer": "fine", "ease": 0.08},
+  "still": {"poster": "models/poster-still.webp", "aspect": 0.6667, "at": 1}
+}

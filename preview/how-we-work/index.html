@@ -23,13 +23,24 @@
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-  <script type="module" crossorigin src="../assets/roama-C1Ftf4i4.js"></script>
-  <link rel="stylesheet" crossorigin href="../assets/roama-B2Sqe-un.css">
+<meta name="theme-color" content="#0b0907">
+<!-- Round 4 page transition: came here through the curtain → it lifts away (CSS), before the first paint. -->
+<script>try{if(sessionStorage.getItem('roama-curtain')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-entering');sessionStorage.removeItem('roama-curtain')}catch(e){}</script>
+  <script type="module" crossorigin src="../assets/roama-B1C7GK31.js"></script>
+  <link rel="stylesheet" crossorigin href="../assets/roama-DXR5ASNX.css">
   <link rel="preload" href="../assets/Onest-Variable-C_399t6n.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/Unbounded-Variable-I12xPPHz.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
   <!-- params: active, lang (uk|de), alt = the same page in the other language -->
+<!-- Round 4 atmosphere of every page (styles/components/_atmos.scss, scripts/components/studio-atmos.js):
+     the film grain, the one amber lamp that follows Atlas / the active section, and the curtain of the page
+     transitions. Decoration only: aria-hidden, pointer-events none, never over the focus ring's contrast. -->
+<div class="atmos" aria-hidden="true">
+  <div class="atmos__lamp" data-atmos-lamp></div>
+  <div class="atmos__grain"></div>
+</div>
+<div class="curtain" aria-hidden="true"><span class="curtain__line"></span></div>
 <a class="skip-link" href="#main">Перейти до змісту</a>
 <header class="site-header" data-roama-header>
   <div class="roama-container site-header__inner">
@@ -63,9 +74,9 @@
       <p class="lead">Заявка → бриф і ТЗ → дизайн на погодження → розробка → перевірка QA на телефоні й компʼютері → запуск і супровід.</p>
       <ol class="flow"><li>Заявка</li><li>Бриф і ТЗ</li><li>Дизайн на погодження</li><li>Розробка</li><li>Перевірка QA на телефоні й компʼютері</li><li>Запуск і супровід</li></ol>
     </section>
-    <section class="sec roama-container scene-host" aria-label="Атлас показує кроки">
+    <section class="sec roama-container scene-host blueprint" data-lamp="50 40" data-lamp-power="0.9" aria-label="Атлас показує кроки">
       <div class="scene-wide scene-wide--process">
-        <scene-3d class="scene-wide__scene" src="/preview/3d/scene-3d-process.json" mode="scroll" length="500" label="Атлас показує, як працює ШІ-команда">
+        <scene-3d class="scene-wide__scene" src="/preview/3d-r3/scene-3d-process.json" mode="scroll" length="500" label="Атлас показує, як працює ШІ-команда">
           <p class="scene-step" data-at="0.02" data-span="0.12" style="--i:0"><span class="scene-step__n">01</span> Заявка</p>
           <p class="scene-step" data-at="0.2" data-span="0.12" style="--i:1"><span class="scene-step__n">02</span> Бриф і ТЗ</p>
           <p class="scene-step" data-at="0.4" data-span="0.12" style="--i:2"><span class="scene-step__n">03</span> Дизайн на погодження</p>
@@ -75,7 +86,36 @@
         <script type="module" src="../3d/scene-3d/scene-3d.js"></script>
       </div>
     </section>
-    <figure class="sec roama-container sysshot reveal"><picture><source type="image/avif" srcset="../assets/office-3d-480-Cx3_Gf2f.avif 480w, ../assets/office-3d-768-BVVp7oyl.avif 768w, ../assets/office-3d-1024-XqeoK2_K.avif 1024w, ../assets/office-3d-1128-DweQs4Bw.avif 1128w" sizes="(min-width: 1232px) 1128px, 100vw"><img src="../assets/office-3d-1024-tNOvtsbs.webp" srcset="../assets/office-3d-480-6auUkBZE.webp 480w, ../assets/office-3d-768-CywVUlqu.webp 768w, ../assets/office-3d-1024-tNOvtsbs.webp 1024w, ../assets/office-3d-1128-CdObg2NH.webp 1128w" sizes="(min-width: 1232px) 1128px, 100vw" width="1128" height="642" alt="3D-офіс наших ШІ-агентів у нашій системі" loading="lazy" decoding="async"></picture><figcaption>Справжній знімок нашої системи: 3D-офіс, де працюють агенти ROAMA (продажі, проєкти, виробництво, контроль, маркетинг).</figcaption></figure>
+    <section class="sec tour blueprint" id="tour" data-tour data-lamp="40 45" data-lamp-power="0.85" aria-labelledby="tour-title">
+      <div class="roama-container sec__head tour__head">
+        <h2 class="display sec__title tour__title" id="tour-title">Прогуляйтеся офісом <span data-scramble>ROAMA</span></h2>
+        <p class="lead">Шість зупинок — шість ролей нашої справжньої системи. Ось хто працює над вашим сайтом.</p>
+      </div>
+      <div class="tour__film">
+        <scene-3d class="tour__scene" src="/preview/3d-tour/scene-3d.json" mode="scroll" length="600" label="Офіс ROAMA: команда ШІ-агентів">
+          <div class="tour__caps" aria-hidden="true">
+            <p class="tour__progress"><span data-tour-dot>1</span><span data-tour-dot>2</span><span data-tour-dot>3</span><span data-tour-dot>4</span><span data-tour-dot>5</span><span data-tour-dot>6</span></p>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0 0.125" data-hold="0 0.07" style="--x:6%;--y:80%;--px:50%;--py:86%"><p class="tour__cap-name">1. Ada — продажі</p><p class="tour__cap-body">Знаходить і оцінює заявки. Саме з неї починається шлях вашого звернення.</p></div>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0.125 0.3125" data-hold="0.18 0.28" style="--x:6%;--y:80%;--px:50%;--py:86%"><p class="tour__cap-name">2. Maya — менеджер проєкту</p><p class="tour__cap-body">Єдина, хто говорить з вами. Усі питання й погодження проходять через неї.</p></div>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0.3125 0.4475" data-hold="0.345 0.415" style="--x:6%;--y:80%;--px:50%;--py:86%"><p class="tour__cap-name">3. Iris — дизайн</p><p class="tour__cap-body">Готує дизайн і показує його вам на погодження до початку розробки.</p></div>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0.4475 0.62" data-hold="0.48 0.57" style="--x:6%;--y:80%;--px:50%;--py:86%"><p class="tour__cap-name">4. Max — розробка</p><p class="tour__cap-body">Збирає сайт за погодженими ТЗ і дизайном.</p></div>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0.62 0.84" data-hold="0.67 0.79" style="--x:6%;--y:80%;--px:50%;--py:86%"><p class="tour__cap-name">5. Quinn — перевірка</p><p class="tour__cap-body">Перевіряє результат на телефоні й на компʼютері, перш ніж він дійде до вас.</p></div>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0.84 1" data-hold="0.89 1" style="--x:6%;--y:80%;--px:50%;--py:88%"><p class="tour__cap-name">6. Людина — власник студії</p><p class="tour__cap-body">Погоджує кожен крок. Останнє слово завжди за людиною.</p></div>
+          </div>
+        </scene-3d>
+        <script type="module" src="../3d/scene-3d/scene-3d.js"></script>
+      </div>
+      <div class="roama-container tour__list">
+        <ol class="tour__stops">
+          <li class="tour__stop"><h3 class="tour__name">1. Ada — продажі</h3><p>Знаходить і оцінює заявки. Саме з неї починається шлях вашого звернення.</p></li>
+          <li class="tour__stop"><h3 class="tour__name">2. Maya — менеджер проєкту</h3><p>Єдина, хто говорить з вами. Усі питання й погодження проходять через неї.</p></li>
+          <li class="tour__stop"><h3 class="tour__name">3. Iris — дизайн</h3><p>Готує дизайн і показує його вам на погодження до початку розробки.</p></li>
+          <li class="tour__stop"><h3 class="tour__name">4. Max — розробка</h3><p>Збирає сайт за погодженими ТЗ і дизайном.</p></li>
+          <li class="tour__stop"><h3 class="tour__name">5. Quinn — перевірка</h3><p>Перевіряє результат на телефоні й на компʼютері, перш ніж він дійде до вас.</p></li>
+          <li class="tour__stop"><h3 class="tour__name">6. Людина — власник студії</h3><p>Погоджує кожен крок. Останнє слово завжди за людиною.</p></li>
+        </ol>
+      </div>
+    </section>
     <div class="blocks roama-container">
       <section class="block reveal" aria-labelledby="b1">
         <h2 class="block__title" id="b1">Хто в команді</h2>

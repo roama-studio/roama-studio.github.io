@@ -23,13 +23,24 @@
 <link rel="icon" href="../../favicon.ico" sizes="32x32">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
-  <script type="module" crossorigin src="../../assets/roama-C1Ftf4i4.js"></script>
-  <link rel="stylesheet" crossorigin href="../../assets/roama-B2Sqe-un.css">
+<meta name="theme-color" content="#0b0907">
+<!-- Round 4 page transition: came here through the curtain → it lifts away (CSS), before the first paint. -->
+<script>try{if(sessionStorage.getItem('roama-curtain')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-entering');sessionStorage.removeItem('roama-curtain')}catch(e){}</script>
+  <script type="module" crossorigin src="../../assets/roama-B1C7GK31.js"></script>
+  <link rel="stylesheet" crossorigin href="../../assets/roama-DXR5ASNX.css">
   <link rel="preload" href="../../assets/Onest-Variable-C_399t6n.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../assets/Unbounded-Variable-I12xPPHz.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
   <!-- params: active, lang (uk|de), alt = the same page in the other language -->
+<!-- Round 4 atmosphere of every page (styles/components/_atmos.scss, scripts/components/studio-atmos.js):
+     the film grain, the one amber lamp that follows Atlas / the active section, and the curtain of the page
+     transitions. Decoration only: aria-hidden, pointer-events none, never over the focus ring's contrast. -->
+<div class="atmos" aria-hidden="true">
+  <div class="atmos__lamp" data-atmos-lamp></div>
+  <div class="atmos__grain"></div>
+</div>
+<div class="curtain" aria-hidden="true"><span class="curtain__line"></span></div>
 <a class="skip-link" href="#main">Перейти до змісту</a>
 <header class="site-header" data-roama-header>
   <div class="roama-container site-header__inner">
@@ -59,7 +70,7 @@
   <main id="main" tabindex="-1">
     <section class="page-hero roama-container" aria-labelledby="page-title">
       <a class="crumb" href="/preview/services/">← Послуги</a>
-      <p class="eyebrow">Лендинг під ключ</p>
+      <p class="eyebrow" data-scramble>Лендинг під ключ</p>
       <h1 class="display" id="page-title">Одна сторінка, яка веде до звернення</h1>
       <p class="lead">Лендинг розповідає про вашу пропозицію просто й по порядку: хто ви, що пропонуєте, як звʼязатися. Без зайвого, щоб людина не загубилась і дійшла до кнопки.</p>
       <p class="actions"><span class="chip">Ціна — після брифу</span></p>

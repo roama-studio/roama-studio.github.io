@@ -23,13 +23,24 @@
 <link rel="icon" href="./favicon.ico" sizes="32x32">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-  <script type="module" crossorigin src="./assets/roama-C1Ftf4i4.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/roama-B2Sqe-un.css">
+<meta name="theme-color" content="#0b0907">
+<!-- Round 4 page transition: came here through the curtain → it lifts away (CSS), before the first paint. -->
+<script>try{if(sessionStorage.getItem('roama-curtain')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-entering');sessionStorage.removeItem('roama-curtain')}catch(e){}</script>
+  <script type="module" crossorigin src="./assets/roama-B1C7GK31.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/roama-DXR5ASNX.css">
   <link rel="preload" href="./assets/Onest-Variable-C_399t6n.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./assets/Unbounded-Variable-I12xPPHz.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
   <!-- params: active, lang (uk|de), alt = the same page in the other language -->
+<!-- Round 4 atmosphere of every page (styles/components/_atmos.scss, scripts/components/studio-atmos.js):
+     the film grain, the one amber lamp that follows Atlas / the active section, and the curtain of the page
+     transitions. Decoration only: aria-hidden, pointer-events none, never over the focus ring's contrast. -->
+<div class="atmos" aria-hidden="true">
+  <div class="atmos__lamp" data-atmos-lamp></div>
+  <div class="atmos__grain"></div>
+</div>
+<div class="curtain" aria-hidden="true"><span class="curtain__line"></span></div>
 <a class="skip-link" href="#main">Перейти до змісту</a>
 <header class="site-header" data-roama-header>
   <div class="roama-container site-header__inner">
@@ -57,25 +68,38 @@
 </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero3" data-hero aria-labelledby="hero-title">
+    <section class="hero3 film" data-hero data-film aria-labelledby="hero-title">
       <div class="hero3__copy">
         <div class="roama-container">
-          <div class="hero2__copy">
-            <p class="eyebrow">ROAMA — веб-студія</p>
-            <h1 class="hero2__title" id="hero-title"><span class="w" style="--i:0">Сайт</span> <span class="w" style="--i:1">для</span> <span class="w" style="--i:2">вашого</span> <span class="w" style="--i:3">бізнесу</span> <span class="w" style="--i:4">—</span> <span class="w" style="--i:5">від</span> <span class="w" style="--i:6">ШІ-команди</span> <span class="w" style="--i:7">під</span> <span class="w" style="--i:8">наглядом</span> <span class="w" style="--i:9">людини</span></h1>
-            <p class="hero2__text">ROAMA — веб-студія, у якій працюють ШІ-агенти: менеджер проєкту, дизайнер, розробник, QA, копірайтер, 3D-дизайнер і відеопродюсер. Кожен крок погоджує людина-власник студії. Напишіть нам, що вам потрібно, — і ми разом визначимо, з чого почати.</p>
-            <div class="actions">
-              <a class="button" href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a>
-              <a class="button button--ghost" href="/preview/how-we-work/">Як ми працюємо</a>
+          <div class="hero2__copy film__frames">
+            <p class="film__title" data-film-title><span class="film__n" aria-hidden="true">01</span> <span class="film__t">Знайомтеся: це Атлас.</span></p>
+            <p class="film__title" data-film-title><span class="film__n" aria-hidden="true">02</span> <span class="film__t">Він іде крізь нашу студію.</span></p>
+            <p class="film__title" data-film-title><span class="film__n" aria-hidden="true">03</span> <span class="film__t">Тут працює ШІ-команда.</span></p>
+            <div class="film__final" data-film-final>
+              <p class="eyebrow">ROAMA — веб-студія</p>
+              <h1 class="hero2__title film__h1" id="hero-title">ROAMA — студія сайтів і мультфільмів</h1>
+              <p class="hero2__text">Прокрутіть далі — покажемо, як ми працюємо, і запросимо до мультсеріалу.</p>
+              <div class="actions">
+                <a class="button" href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a>
+                <a class="button button--ghost" href="/preview/how-we-work/">Як ми працюємо</a>
+              </div>
             </div>
-            <div class="hero3__led" aria-hidden="true"><span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span></div>
+            <div class="film__bar" aria-hidden="true"><span data-film-bar></span></div>
           </div>
         </div>
       </div>
       <div class="hero3__stage">
         <link rel="stylesheet" href="./3d/scene-3d-still.css">
-        <scene-3d class="hero3__scene" src="/preview/3d/scene-3d.json" mode="scroll" length="200" label="Атлас, робот ROAMA"></scene-3d>
+        <script type="module" src="./3d/roama-hero.js"></script>
+        <scene-3d class="hero3__scene" data-lamp-follow="50 35" src="/preview/3d/scene-3d.json" mode="scroll" length="250" label="Атлас — ROAMA" data-hero="/3d/roama-hero.json"></scene-3d>
         <script type="module" src="./3d/scene-3d/scene-3d.js"></script>
+      </div>
+    </section>
+
+    <section class="sec roama-container intro" data-lamp="25 40" aria-labelledby="intro-title">
+      <div class="sec__head sec__head--split">
+        <h2 class="display sec__title" id="intro-title">Сайт для вашого бізнесу — від ШІ-команди під наглядом людини</h2>
+        <p class="lead">ROAMA — веб-студія, у якій працюють ШІ-агенти: менеджер проєкту, дизайнер, розробник, QA, копірайтер, 3D-дизайнер і відеопродюсер. Кожен крок погоджує людина-власник студії. Напишіть нам, що вам потрібно, — і ми разом визначимо, з чого почати.</p>
       </div>
     </section>
 
@@ -83,7 +107,7 @@
       <ul class="ticker__row"><li>менеджер проєкту</li><li>дизайнер</li><li>розробник</li><li>QA</li><li>копірайтер</li><li>3D-дизайнер</li><li>відеопродюсер</li><li>менеджер проєкту</li><li>дизайнер</li><li>розробник</li><li>QA</li><li>копірайтер</li><li>3D-дизайнер</li><li>відеопродюсер</li></ul>
     </div>
 
-    <section class="sec roama-container" id="services" aria-labelledby="services-title">
+    <section class="sec roama-container" id="services" data-lamp="20 30" aria-labelledby="services-title">
       <div class="sec__head sec__head--split">
         <h2 class="display sec__title reveal" id="services-title">Що ми робимо</h2>
         <p class="lead">Лендинги, сайти на кілька сторінок, WordPress з адмінкою, інтернет-магазини, вебзастосунки. Також 3D-обʼєкт у першому екрані, анімацію логотипа, правки наявного сайту та тексти. Ціна — після брифу.</p>
@@ -102,12 +126,43 @@
       <p class="sec__more"><a class="link-arrow" href="/preview/services/">Усі послуги</a></p>
     </section>
 
-    <section class="sec roama-container" id="process" aria-labelledby="process-title">
+    <section class="sec tour blueprint" id="tour" data-tour data-lamp="40 45" data-lamp-power="0.85" aria-labelledby="tour-title">
+      <div class="roama-container sec__head tour__head">
+        <h2 class="display sec__title tour__title" id="tour-title">Прогуляйтеся офісом <span data-scramble>ROAMA</span></h2>
+        <p class="lead">Шість зупинок — шість ролей нашої справжньої системи. Ось хто працює над вашим сайтом.</p>
+      </div>
+      <div class="tour__film">
+        <scene-3d class="tour__scene" src="/preview/3d-tour/scene-3d.json" mode="scroll" length="600" label="Офіс ROAMA: команда ШІ-агентів">
+          <div class="tour__caps" aria-hidden="true">
+            <p class="tour__progress"><span data-tour-dot>1</span><span data-tour-dot>2</span><span data-tour-dot>3</span><span data-tour-dot>4</span><span data-tour-dot>5</span><span data-tour-dot>6</span></p>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0 0.125" data-hold="0 0.07" style="--x:6%;--y:80%;--px:50%;--py:86%"><p class="tour__cap-name">1. Ada — продажі</p><p class="tour__cap-body">Знаходить і оцінює заявки. Саме з неї починається шлях вашого звернення.</p></div>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0.125 0.3125" data-hold="0.18 0.28" style="--x:6%;--y:80%;--px:50%;--py:86%"><p class="tour__cap-name">2. Maya — менеджер проєкту</p><p class="tour__cap-body">Єдина, хто говорить з вами. Усі питання й погодження проходять через неї.</p></div>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0.3125 0.4475" data-hold="0.345 0.415" style="--x:6%;--y:80%;--px:50%;--py:86%"><p class="tour__cap-name">3. Iris — дизайн</p><p class="tour__cap-body">Готує дизайн і показує його вам на погодження до початку розробки.</p></div>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0.4475 0.62" data-hold="0.48 0.57" style="--x:6%;--y:80%;--px:50%;--py:86%"><p class="tour__cap-name">4. Max — розробка</p><p class="tour__cap-body">Збирає сайт за погодженими ТЗ і дизайном.</p></div>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0.62 0.84" data-hold="0.67 0.79" style="--x:6%;--y:80%;--px:50%;--py:86%"><p class="tour__cap-name">5. Quinn — перевірка</p><p class="tour__cap-body">Перевіряє результат на телефоні й на компʼютері, перш ніж він дійде до вас.</p></div>
+            <div class="tour__cap tour__cap--left tour__cap--p-center" data-tour-cap data-range="0.84 1" data-hold="0.89 1" style="--x:6%;--y:80%;--px:50%;--py:88%"><p class="tour__cap-name">6. Людина — власник студії</p><p class="tour__cap-body">Погоджує кожен крок. Останнє слово завжди за людиною.</p></div>
+          </div>
+        </scene-3d>
+        <script type="module" src="./3d/scene-3d/scene-3d.js"></script>
+      </div>
+      <div class="roama-container tour__list">
+        <ol class="tour__stops">
+          <li class="tour__stop"><h3 class="tour__name">1. Ada — продажі</h3><p>Знаходить і оцінює заявки. Саме з неї починається шлях вашого звернення.</p></li>
+          <li class="tour__stop"><h3 class="tour__name">2. Maya — менеджер проєкту</h3><p>Єдина, хто говорить з вами. Усі питання й погодження проходять через неї.</p></li>
+          <li class="tour__stop"><h3 class="tour__name">3. Iris — дизайн</h3><p>Готує дизайн і показує його вам на погодження до початку розробки.</p></li>
+          <li class="tour__stop"><h3 class="tour__name">4. Max — розробка</h3><p>Збирає сайт за погодженими ТЗ і дизайном.</p></li>
+          <li class="tour__stop"><h3 class="tour__name">5. Quinn — перевірка</h3><p>Перевіряє результат на телефоні й на компʼютері, перш ніж він дійде до вас.</p></li>
+          <li class="tour__stop"><h3 class="tour__name">6. Людина — власник студії</h3><p>Погоджує кожен крок. Останнє слово завжди за людиною.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec roama-container blueprint" id="process" data-lamp="30 40" data-lamp-power="0.9" aria-labelledby="process-title">
       <div class="sec__head">
         <h2 class="display sec__title reveal" id="process-title">Як це відбувається</h2>
       </div>
       <div class="scene-wide scene-wide--process">
-        <scene-3d class="scene-wide__scene" src="/preview/3d/scene-3d-process.json" mode="scroll" length="500" label="Атлас показує, як працює ШІ-команда">
+        <scene-3d class="scene-wide__scene" src="/preview/3d-r3/scene-3d-process.json" mode="scroll" length="500" label="Атлас показує, як працює ШІ-команда">
           <p class="scene-step" data-at="0.02" data-span="0.12" style="--i:0"><span class="scene-step__n">01</span> Заявка</p>
           <p class="scene-step" data-at="0.2" data-span="0.12" style="--i:1"><span class="scene-step__n">02</span> Бриф і ТЗ</p>
           <p class="scene-step" data-at="0.4" data-span="0.12" style="--i:2"><span class="scene-step__n">03</span> Дизайн на погодження</p>
@@ -142,7 +197,39 @@
       </div>
     </section>
 
-    <section class="sec roama-container" id="proof" aria-labelledby="proof-title">
+    <section class="sec world-sec" id="gallery" data-lamp="50 50" aria-labelledby="gallery-title">
+      <div class="roama-container sec__head world__head">
+        <h2 class="display sec__title world__title" id="gallery-title">Галерея</h2>
+        <p class="lead world__hint">Потягніть, щоб роздивитися</p>
+      </div>
+      <div class="world" data-world tabindex="0" role="region" aria-label="Галерея. Потягніть, щоб роздивитися. Стрілки клавіатури теж рухають полотно.">
+        <ul class="world__canvas" data-world-canvas>
+          <li class="world__item" data-world-item data-depth="0.6" style="--x:4%;--y:6%;--w:520">
+            <figure><div class="world__pic"><picture><source type="image/avif" srcset="./assets/ep1-3-480-2D2z6bb6.avif 480w, ./assets/ep1-3-768-twRtXP3N.avif 768w, ./assets/ep1-3-960-BJ2rOtsV.avif 960w" sizes="(min-width: 992px) 520px, 60vw"><img src="./assets/ep1-3-960-BnvrcGdY.webp" srcset="./assets/ep1-3-480-DDC-ozMj.webp 480w, ./assets/ep1-3-768-Cp-CK-Pv.webp 768w, ./assets/ep1-3-960-BnvrcGdY.webp 960w" sizes="(min-width: 992px) 520px, 60vw" width="960" height="540" alt="Кадр із серії нашого мультсеріалу" draggable="false" loading="lazy" decoding="async"></picture></div><figcaption aria-hidden="true"><span>01</span> Кадр із серії нашого мультсеріалу.</figcaption></figure>
+          </li>
+          <li class="world__item" data-world-item data-depth="-0.4" style="--x:31%;--y:33%;--w:440">
+            <figure><div class="world__pic"><picture><source type="image/avif" srcset="./assets/ep3-3-480-DLBtLZi7.avif 480w, ./assets/ep3-3-768-pBtFPrOh.avif 768w, ./assets/ep3-3-960-DM1UyKl9.avif 960w" sizes="(min-width: 992px) 440px, 60vw"><img src="./assets/ep3-3-960-ChChS6TE.webp" srcset="./assets/ep3-3-480-DR0RoSEw.webp 480w, ./assets/ep3-3-768-F4OKOXRn.webp 768w, ./assets/ep3-3-960-ChChS6TE.webp 960w" sizes="(min-width: 992px) 440px, 60vw" width="960" height="540" alt="Ще один кадр із мультсеріалу" draggable="false" loading="lazy" decoding="async"></picture></div><figcaption aria-hidden="true"><span>02</span> Ще один кадр із мультсеріалу.</figcaption></figure>
+          </li>
+          <li class="world__item" data-world-item data-depth="0.8" style="--x:55%;--y:3%;--w:560">
+            <figure><div class="world__pic"><picture><source type="image/avif" srcset="./assets/ep5-3-480-DmLE-XOt.avif 480w, ./assets/ep5-3-768-Bh7QytLw.avif 768w, ./assets/ep5-3-960-CpqCp9vQ.avif 960w" sizes="(min-width: 992px) 560px, 60vw"><img src="./assets/ep5-3-960-DLAjhBvW.webp" srcset="./assets/ep5-3-480-DagKhRO9.webp 480w, ./assets/ep5-3-768-CaqVHa47.webp 768w, ./assets/ep5-3-960-DLAjhBvW.webp 960w" sizes="(min-width: 992px) 560px, 60vw" width="960" height="540" alt="Кадр із мультсеріалу ROAMA" draggable="false" loading="lazy" decoding="async"></picture></div><figcaption aria-hidden="true"><span>03</span> Кадр із мультсеріалу ROAMA.</figcaption></figure>
+          </li>
+          <li class="world__item" data-world-item data-depth="-0.7" style="--x:79%;--y:30%;--w:380">
+            <figure><div class="world__pic"><picture><source type="image/avif" srcset="./assets/3d-hero-1200-480-Bw9Rfs-a.avif 480w, ./assets/3d-hero-1200-768-BMt38IBT.avif 768w, ./assets/3d-hero-1200-1024-CdU3-jSI.avif 1024w, ./assets/3d-hero-1200-1200-C4RKcM1r.avif 1200w" sizes="(min-width: 992px) 380px, 60vw"><img src="./assets/3d-hero-1200-1024-CVjBgHpz.webp" srcset="./assets/3d-hero-1200-480-Boe8LJt8.webp 480w, ./assets/3d-hero-1200-768-KvcUL1HI.webp 768w, ./assets/3d-hero-1200-1024-CVjBgHpz.webp 1024w, ./assets/3d-hero-1200-1200-26RuMDmQ.webp 1200w" sizes="(min-width: 992px) 380px, 60vw" width="1200" height="900" alt="Атлас — стоп-кадр із 3D-моделі" draggable="false" loading="lazy" decoding="async"></picture></div><figcaption aria-hidden="true"><span>04</span> Атлас — стоп-кадр із 3D-моделі.</figcaption></figure>
+          </li>
+          <li class="world__item" data-world-item data-depth="0.5" style="--x:7%;--y:55%;--w:360">
+            <figure><div class="world__pic"><picture><source type="image/avif" srcset="./assets/logo-animation-1200-480-mTSaQSwV.avif 480w, ./assets/logo-animation-1200-768-DMft9Qlx.avif 768w, ./assets/logo-animation-1200-1024-CNfusf_M.avif 1024w, ./assets/logo-animation-1200-1200-BKGb-Jj-.avif 1200w" sizes="(min-width: 992px) 360px, 60vw"><img src="./assets/logo-animation-1200-1024-e-U3b590.webp" srcset="./assets/logo-animation-1200-480-DToTwkZ1.webp 480w, ./assets/logo-animation-1200-768-B3GZQgh4.webp 768w, ./assets/logo-animation-1200-1024-e-U3b590.webp 1024w, ./assets/logo-animation-1200-1200-CsIGTJev.webp 1200w" sizes="(min-width: 992px) 360px, 60vw" width="1200" height="900" alt="Атлас в іншій позі" draggable="false" loading="lazy" decoding="async"></picture></div><figcaption aria-hidden="true"><span>05</span> Атлас в іншій позі.</figcaption></figure>
+          </li>
+          <li class="world__item" data-world-item data-depth="-0.5" style="--x:34%;--y:66%;--w:400">
+            <figure><div class="world__pic"><picture><source type="image/avif" srcset="./assets/landing-1200-480-CcGm0zZU.avif 480w, ./assets/landing-1200-768-DtpDyKbN.avif 768w, ./assets/landing-1200-1024-DrwyB6sC.avif 1024w, ./assets/landing-1200-1200-CaF0k4Uf.avif 1200w" sizes="(min-width: 992px) 400px, 60vw"><img src="./assets/landing-1200-1024-BHvwZv9s.webp" srcset="./assets/landing-1200-480-C1tQtGiQ.webp 480w, ./assets/landing-1200-768-Didlle8i.webp 768w, ./assets/landing-1200-1024-BHvwZv9s.webp 1024w, ./assets/landing-1200-1200-CoSfjrwk.webp 1200w" sizes="(min-width: 992px) 400px, 60vw" width="1200" height="900" alt="Атлас: ще один стоп-кадр" draggable="false" loading="lazy" decoding="async"></picture></div><figcaption aria-hidden="true"><span>06</span> Атлас: ще один стоп-кадр.</figcaption></figure>
+          </li>
+          <li class="world__item" data-world-item data-depth="0.3" style="--x:59%;--y:58%;--w:640">
+            <figure><div class="world__pic"><picture><source type="image/avif" srcset="./assets/office-3d-480-Cx3_Gf2f.avif 480w, ./assets/office-3d-768-BVVp7oyl.avif 768w, ./assets/office-3d-1024-XqeoK2_K.avif 1024w, ./assets/office-3d-1128-DweQs4Bw.avif 1128w" sizes="(min-width: 992px) 640px, 60vw"><img src="./assets/office-3d-1024-tNOvtsbs.webp" srcset="./assets/office-3d-480-6auUkBZE.webp 480w, ./assets/office-3d-768-CywVUlqu.webp 768w, ./assets/office-3d-1024-tNOvtsbs.webp 1024w, ./assets/office-3d-1128-CdObg2NH.webp 1128w" sizes="(min-width: 992px) 640px, 60vw" width="1128" height="642" alt="3D-офіс наших агентів — знімок справжньої системи" draggable="false" loading="lazy" decoding="async"></picture></div><figcaption aria-hidden="true"><span>07</span> 3D-офіс наших агентів — знімок справжньої системи.</figcaption></figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec roama-container" id="proof" data-lamp="80 40" aria-labelledby="proof-title">
       <div class="sec__head sec__head--split">
         <h2 class="display sec__title reveal" id="proof-title">Докази без гучних слів</h2>
         <p class="lead">Ми не показуємо вигаданих відгуків. Натомість наш код відкритий: WordPress-тема ROAMA та навички для агентів лежать на GitHub. А ще про студію є мультсеріал «Баг у системі».</p>
@@ -173,7 +260,7 @@
 
 </section>
     <div class="scene-wide scene-wide--wave roama-container">
-      <scene-3d class="scene-wide__scene" src="/preview/3d/scene-3d-contact.json" mode="scroll" length="120" label="Атлас махає рукою"></scene-3d>
+      <scene-3d class="scene-wide__scene" src="/preview/3d-r3/scene-3d-contact.json" mode="scroll" length="120" label="Атлас махає рукою"></scene-3d>
       <script type="module" src="./3d/scene-3d/scene-3d.js"></script>
     </div>
   </main>

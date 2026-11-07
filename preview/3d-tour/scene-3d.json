@@ -1,0 +1,794 @@
+{
+  "name": "ROAMA round 4: 3D office scroll tour",
+  "models": {
+    "desktop": "models/desktop.glb",
+    "mobile": "models/mobile.glb"
+  },
+  "poster": "models/poster.webp",
+  "aspect": 1.6,
+  "frame": {
+    "width": 0.9994,
+    "height": 0.999
+  },
+  "phone_aspect": 1.6,
+  "background": "#0E0C09",
+  "camera": {
+    "position": [
+      -3.95,
+      -4.435,
+      1.5
+    ],
+    "target": [
+      -3.55,
+      -1.435,
+      0.88
+    ],
+    "fov": 42.5
+  },
+  "scroll": {
+    "path": "smooth",
+    "keys": [
+      {
+        "at": 0,
+        "camera": {
+          "position": [
+            -3.95,
+            -4.435,
+            1.5
+          ],
+          "target": [
+            -3.55,
+            -1.435,
+            0.88
+          ],
+          "fov": 42.5
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              -3.15,
+              -1.235,
+              0.29
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_ada": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          },
+          "lamp_on_maya": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          },
+          "lamp_on_iris": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          },
+          "lamp_on_max": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          },
+          "lamp_on_quinn": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          },
+          "lamp_on_human": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.014,
+        "camera": {
+          "position": [
+            -3.75,
+            -4.435,
+            1.5
+          ],
+          "target": [
+            -3.35,
+            -1.435,
+            0.88
+          ],
+          "fov": 42.5
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              -3.15,
+              -1.235,
+              0.29
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_ada": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.028,
+        "nodes": {
+          "lamp_on_ada": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.0608,
+        "nodes": {
+          "lamp_on_maya": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.0855,
+        "camera": {
+          "position": [
+            -1.666,
+            -5.843,
+            1.5
+          ],
+          "target": [
+            -0.75,
+            -2.955,
+            0.88
+          ],
+          "fov": 42.5
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              -0.38,
+              -2.335,
+              0.29
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_maya": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.1913,
+        "camera": {
+          "position": [
+            -0.323,
+            -5.982,
+            1.5
+          ],
+          "target": [
+            -0.45,
+            -2.955,
+            0.88
+          ],
+          "fov": 42.5
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              -0.38,
+              -2.335,
+              0.29
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_maya": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.216,
+        "nodes": {
+          "lamp_on_maya": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.2482,
+        "nodes": {
+          "lamp_on_iris": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.2749,
+        "camera": {
+          "position": [
+            1.564,
+            -5.843,
+            1.5
+          ],
+          "target": [
+            2.48,
+            -2.955,
+            0.88
+          ],
+          "fov": 42.5
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              2.84,
+              -2.355,
+              0.29
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_iris": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.3737,
+        "camera": {
+          "position": [
+            2.907,
+            -5.982,
+            1.5
+          ],
+          "target": [
+            2.78,
+            -2.955,
+            0.88
+          ],
+          "fov": 42.5
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              2.84,
+              -2.355,
+              0.29
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_iris": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.403,
+        "nodes": {
+          "lamp_on_iris": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.43,
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              6.2,
+              -2.035,
+              0.1
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.4401,
+        "nodes": {
+          "lamp_on_max": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.47,
+        "camera": {
+          "position": [
+            5.45,
+            -4.465,
+            1.5
+          ],
+          "target": [
+            5.45,
+            -1.435,
+            0.88
+          ],
+          "fov": 42.5
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              5.85,
+              -0.985,
+              0.29
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_max": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.6043,
+        "camera": {
+          "position": [
+            6.786,
+            -4.282,
+            1.9
+          ],
+          "target": [
+            5.75,
+            -1.435,
+            0.88
+          ],
+          "fov": 42.5
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              5.85,
+              -0.985,
+              0.29
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_max": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.648,
+        "nodes": {
+          "lamp_on_max": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.6765,
+        "camera": {
+          "position": [
+            3.2,
+            -4.9,
+            2.3
+          ],
+          "target": [
+            2.4,
+            -0.3,
+            0.95
+          ],
+          "fov": 46.8
+        }
+      },
+      {
+        "at": 0.7045,
+        "nodes": {
+          "lamp_on_quinn": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.7452,
+        "camera": {
+          "position": [
+            1.32,
+            -2.837,
+            1.5
+          ],
+          "target": [
+            1.62,
+            0.465,
+            1.0
+          ],
+          "fov": 51.8
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              2.3,
+              0.815,
+              0.1
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_quinn": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.8862,
+        "camera": {
+          "position": [
+            -0.092,
+            -2.535,
+            1.5
+          ],
+          "target": [
+            1.32,
+            0.465,
+            1.0
+          ],
+          "fov": 51.8
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              2.3,
+              0.815,
+              0.1
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_quinn": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.9054,
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              2.3,
+              0.815,
+              0.1
+            ],
+            "rotation": [
+              0,
+              0,
+              -40
+            ]
+          },
+          "lamp_on_quinn": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.94,
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              -0.6,
+              -0.4,
+              0.19
+            ],
+            "rotation": [
+              0,
+              0,
+              -60
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.9467,
+        "nodes": {
+          "lamp_on_human": {
+            "position": [
+              0,
+              -0.535,
+              0.135
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.9664,
+        "camera": {
+          "position": [
+            -1.22,
+            -2.085,
+            2.1
+          ],
+          "target": [
+            -1.12,
+            0.465,
+            0.9
+          ],
+          "fov": 63.7
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              -2.05,
+              0.55,
+              0.1
+            ],
+            "rotation": [
+              0,
+              0,
+              -25
+            ]
+          },
+          "lamp_on_human": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      },
+      {
+        "at": 1,
+        "camera": {
+          "position": [
+            -1.38,
+            -2.085,
+            2.1
+          ],
+          "target": [
+            -1.28,
+            0.465,
+            0.9
+          ],
+          "fov": 63.7
+        },
+        "nodes": {
+          "atlas_guide": {
+            "position": [
+              -2.05,
+              0.55,
+              0.1
+            ],
+            "rotation": [
+              0,
+              0,
+              -25
+            ]
+          },
+          "lamp_on_human": {
+            "position": [
+              0,
+              -0.535,
+              0.1
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "lighting": {
+    "preset": "dark_cinematic",
+    "ambient": 0.06,
+    "exposure": 0.78,
+    "lights": [
+      {
+        "name": "key",
+        "position": [
+          -34.18948,
+          -7.871749,
+          -1.001173
+        ],
+        "color": "#fff1de",
+        "intensity": 4.38616,
+        "shadow": false
+      },
+      {
+        "name": "rim",
+        "position": [
+          13.411172,
+          -8.241819,
+          27.918263
+        ],
+        "color": "#cfdcff",
+        "intensity": 9.259924,
+        "shadow": true
+      },
+      {
+        "name": "glint",
+        "position": [
+          5.234783,
+          -24.89287,
+          -18.700995
+        ],
+        "color": "#ffffff",
+        "intensity": 1.341536,
+        "shadow": false
+      }
+    ],
+    "tone": "neutral",
+    "environment": {
+      "file": "models/environment.hdr",
+      "intensity": 0.22,
+      "rotation": 0,
+      "name": "studio"
+    }
+  },
+  "glow": [
+    {
+      "color": "#FFC83D",
+      "power": 10,
+      "flicker": 0,
+      "node": "lamp_light_ada",
+      "intensity": 0.63662
+    },
+    {
+      "color": "#FFC83D",
+      "power": 10,
+      "flicker": 0,
+      "node": "lamp_light_maya",
+      "intensity": 0.63662
+    },
+    {
+      "color": "#FFC83D",
+      "power": 10,
+      "flicker": 0,
+      "node": "lamp_light_iris",
+      "intensity": 0.63662
+    },
+    {
+      "color": "#FFC83D",
+      "power": 10,
+      "flicker": 0,
+      "node": "lamp_light_max",
+      "intensity": 0.63662
+    },
+    {
+      "color": "#FFC83D",
+      "power": 10,
+      "flicker": 0,
+      "node": "lamp_light_quinn",
+      "intensity": 0.63662
+    },
+    {
+      "color": "#FFC83D",
+      "power": 28,
+      "flicker": 0,
+      "node": "human_lamp",
+      "intensity": 1.782535
+    }
+  ],
+  "steam": [],
+  "ripple": [],
+  "water": [],
+  "contact": null,
+  "post": {
+    "bloom": 0.45,
+    "grain": 0.04,
+    "vignette": 0.3
+  }
+}

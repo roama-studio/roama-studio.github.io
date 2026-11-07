@@ -1,50 +1,54 @@
 {
-  "name": "Atlas hero (scroll)",
+  "name": "Atlas round 4: hero product film",
   "models": {
     "desktop": "models/desktop.glb",
     "mobile": "models/mobile.glb"
   },
   "poster": "models/poster.webp",
-  "poster_small": "models/poster-600.webp",
-  "poster_size": [1000, 1500],
   "aspect": 0.6667,
   "frame": {
-    "width": 0.419,
-    "height": 0.778
+    "width": 0.999,
+    "height": 0.9993
   },
   "phone_aspect": 0.8,
-  "background": "#121212",
+  "background": "#0B0907",
   "camera": {
     "position": [
-      2.03,
-      -1.7,
-      0.78
+      0.38,
+      -0.863,
+      0.92
     ],
     "target": [
-      0,
-      0,
-      0.63
+      -0.02,
+      -0.17,
+      0.89
     ],
-    "fov": 24
+    "fov": 22
   },
   "scroll": {
     "path": "smooth",
     "keys": [
       {
         "at": 0,
-        "nodes": {
-          "atlas_head": {
-            "rotation": [
-              16,
-              0,
-              6
-            ]
+        "camera": {
+          "orbit": {
+            "angle": 30,
+            "radius": 0.8,
+            "height": 0.03
           },
+          "target": [
+            -0.02,
+            -0.17,
+            0.89
+          ],
+          "fov": 22
+        },
+        "nodes": {
           "atlas_face_light": {
             "scale": [
-              0.001,
-              0.001,
-              0.001
+              1,
+              1,
+              1
             ]
           },
           "atlas_face_triumph": {
@@ -55,13 +59,6 @@
             ]
           },
           "atlas_chest_light": {
-            "scale": [
-              1,
-              1,
-              0.001
-            ]
-          },
-          "atlas_antenna_glow": {
             "scale": [
               0.001,
               0.001,
@@ -75,18 +72,46 @@
               0.001
             ]
           },
-          "atlas_arm_wave": {
+          "film_beam": {
             "rotation": [
               0,
               0,
-              0
+              -40
+            ],
+            "scale": [
+              1,
+              1,
+              0.001
             ]
+          }
+        }
+      },
+      {
+        "at": 0.15,
+        "camera": {
+          "orbit": {
+            "angle": 18,
+            "radius": 0.85,
+            "height": 0.04
           },
-          "atlas_forearm_wave": {
+          "target": [
+            0.03,
+            -0.11,
+            0.82
+          ],
+          "fov": 20
+        },
+        "nodes": {
+          "film_beam": {
             "rotation": [
               0,
               0,
-              0
+              -25
+            ],
+            "scale": [
+              1,
+              1,
+              1
             ]
           }
         }
@@ -95,47 +120,81 @@
         "at": 0.35,
         "camera": {
           "orbit": {
-            "angle": 40,
-            "radius": 2.55,
-            "height": 0.15
+            "angle": 6,
+            "radius": 0.6,
+            "height": 0.05
           },
           "target": [
-            0,
-            0,
-            0.63
+            0.27,
+            -0.07,
+            0.37
           ],
-          "fov": 24
+          "fov": 16
         },
         "nodes": {
-          "atlas_head": {
-            "rotation": [
-              -4,
-              0,
-              4
-            ]
-          },
-          "atlas_face_light": {
-            "scale": [
-              1,
-              1,
-              1
-            ]
-          },
-          "atlas_face_triumph": {
+          "atlas_chest_light": {
             "scale": [
               0.001,
               0.001,
               0.001
             ]
           },
-          "atlas_chest_light": {
+          "film_beam": {
+            "rotation": [
+              0,
+              0,
+              -12
+            ],
             "scale": [
               1,
               1,
               1
             ]
+          }
+        }
+      },
+      {
+        "at": 0.6,
+        "camera": {
+          "orbit": {
+            "angle": -6,
+            "radius": 1.35,
+            "height": 0.08
           },
-          "atlas_antenna_glow": {
+          "target": [
+            0.14,
+            -0.04,
+            0.52
+          ],
+          "fov": 19
+        },
+        "nodes": {
+          "atlas_chest_light": {
+            "scale": [
+              1,
+              1,
+              0.5
+            ]
+          }
+        }
+      },
+      {
+        "at": 0.85,
+        "camera": {
+          "orbit": {
+            "angle": -14,
+            "radius": 1.8,
+            "height": 0.1
+          },
+          "target": [
+            0.06,
+            -0.02,
+            0.58
+          ],
+          "fov": 21
+        },
+        "nodes": {
+          "atlas_chest_light": {
             "scale": [
               1,
               1,
@@ -149,57 +208,12 @@
               1
             ]
           },
-          "atlas_arm_wave": {
+          "film_beam": {
             "rotation": [
               0,
               0,
-              0
-            ]
-          },
-          "atlas_forearm_wave": {
-            "rotation": [
-              0,
-              0,
-              0
-            ]
-          }
-        }
-      },
-      {
-        "at": 0.9,
-        "nodes": {
-          "atlas_face_light": {
-            "scale": [
-              1,
-              1,
-              1
-            ]
-          },
-          "atlas_face_triumph": {
-            "scale": [
-              0.001,
-              0.001,
-              0.001
-            ]
-          }
-        }
-      },
-      {
-        "at": 0.915,
-        "nodes": {
-          "atlas_face_light": {
-            "scale": [
-              0.001,
-              0.001,
-              0.001
-            ]
-          }
-        }
-      },
-      {
-        "at": 0.93,
-        "nodes": {
-          "atlas_face_triumph": {
+              -10
+            ],
             "scale": [
               1,
               1,
@@ -212,51 +226,56 @@
         "at": 1,
         "camera": {
           "orbit": {
-            "angle": -10,
-            "radius": 2.3,
-            "height": 0.12
+            "angle": -32,
+            "radius": 2.6,
+            "height": 0.16
           },
           "target": [
             0,
             0,
-            0.65
+            0.62
           ],
           "fov": 24
         },
         "nodes": {
-          "atlas_head": {
-            "rotation": [
-              -6,
-              0,
-              -8
-            ]
-          },
           "atlas_face_light": {
-            "scale": [
-              0.001,
-              0.001,
-              0.001
-            ]
-          },
-          "atlas_face_triumph": {
             "scale": [
               1,
               1,
               1
             ]
           },
-          "atlas_arm_wave": {
-            "rotation": [
-              0,
-              100,
-              0
+          "atlas_face_triumph": {
+            "scale": [
+              0.001,
+              0.001,
+              0.001
             ]
           },
-          "atlas_forearm_wave": {
+          "atlas_chest_light": {
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "atlas_back_light": {
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "film_beam": {
             "rotation": [
               0,
-              55,
+              0,
               0
+            ],
+            "scale": [
+              1,
+              1,
+              1
             ]
           }
         }
@@ -271,9 +290,9 @@
       {
         "name": "key",
         "position": [
-          -0.80549,
-          -2.082221,
-          0.388494
+          -2.529445,
+          -3.023798,
+          0.455296
         ],
         "color": "#fff1de",
         "intensity": 4.38616,
@@ -282,9 +301,9 @@
       {
         "name": "rim",
         "position": [
-          1.27402,
-          0.587148,
-          2.498646
+          2.391766,
+          -0.027537,
+          4.052774
         ],
         "color": "#cfdcff",
         "intensity": 9.259924,
@@ -293,9 +312,9 @@
       {
         "name": "glint",
         "position": [
-          1.586784,
-          -0.226127,
-          -0.986397
+          2.360134,
+          -1.413017,
+          -1.907055
         ],
         "color": "#ffffff",
         "intensity": 1.341536,
@@ -305,7 +324,7 @@
     "tone": "agx",
     "environment": {
       "file": "models/environment.hdr",
-      "intensity": 0.35,
+      "intensity": 0.28,
       "rotation": 120,
       "name": "studio"
     }
@@ -321,11 +340,11 @@
       0.0,
       0.0
     ],
-    "size": 1.305003249645233
+    "size": 2.553111743927002
   },
   "post": {
-    "bloom": 0.02,
+    "bloom": 0,
     "grain": 0.035,
-    "vignette": 0.2
+    "vignette": 0.25
   }
 }

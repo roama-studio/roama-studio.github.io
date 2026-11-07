@@ -8,7 +8,7 @@ scene-3d[mode="scroll"][data-state="poster"] {
   height: 100vh !important;
   height: min(100svh, 150vw) !important;
   max-height: none !important;
-  background: #121212;
+  background: transparent; /* round 4: the page's grain and lamp show through */
 }
 scene-3d[mode="scroll"][data-state="poster"] > img {
   inset: auto !important;
