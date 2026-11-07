@@ -103,7 +103,9 @@ class Scene3DElement extends HTMLElement {
     if (mode === 'viewer' && !this.style.height && !this.style.aspectRatio) this.style.aspectRatio = String(boxAspect(m, this.clientWidth))
     this.showPoster()
     const saveData = navigator.connection?.saveData === true
-    if (this.reduced || saveData || !hasWebGL()) {
+    // ROAMA r4b (iPhone 15): still-below="768" = phones show the still, no live WebGL behind a scrubbed pin
+    const phoneStill = this.hasAttribute('still-below') && innerWidth < Number(this.getAttribute('still-below'))
+    if (this.reduced || saveData || phoneStill || !hasWebGL()) {
       if (mode === 'scroll') { // a still in the flow, not a pinned screen
         this.style.height = ''
         this.style.aspectRatio = String(m.aspect ?? 1.6)
