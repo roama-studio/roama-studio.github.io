@@ -28,10 +28,29 @@ a{color:var(--accent);display:inline-flex;align-items:center;min-height:44px}
   var state = document.getElementById("state");
   var stop = new AbortController();
   var timer = setTimeout(function () { stop.abort(); }, 6000);
+  // TASK-0688: an invite / reset link is this page + #invite=<token> or #reset=<token>. A fragment never reaches
+  // GitHub; it leaves the address bar at once and goes to the cabinet in a POST body (no-referrer above).
+  var link = /^#(invite|reset)=([A-Za-z0-9_-]{40,64})$/.exec(location.hash);
+  if (location.hash) { history.replaceState(null, "", location.pathname); }
   fetch(health, { signal: stop.signal, cache: "no-store" })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (body) {
       clearTimeout(timer);
+      if (body && body.ok === true && link) {
+        var form = document.createElement("form");
+        form.method = "post";
+        form.action = target + "/open";
+        [["kind", link[1]], ["t", link[2]]].forEach(function (pair) {
+          var field = document.createElement("input");
+          field.type = "hidden";
+          field.name = pair[0];
+          field.value = pair[1];
+          form.appendChild(field);
+        });
+        document.body.appendChild(form);
+        form.submit();
+        return;
+      }
       if (body && body.ok === true) { location.replace(target + "/login"); return; }
       throw new Error("down");
     })
