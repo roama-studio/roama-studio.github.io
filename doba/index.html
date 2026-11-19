@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzIgMTcyIiByb2xlPSJpbWciPjx0aXRsZT5ST0FNQTwvdGl0bGU+PHJlY3Qgd2lkdGg9IjE3MiIgaGVpZ2h0PSIxNzIiIHJ4PSIzNy44IiBmaWxsPSIjMTIxMjEyIi8+PGcgaWQ9Im1hcmsiPjxwYXRoIGlkPSJzdGVtIiBmaWxsPSIjRjVGMkVBIiBkPSJNMzUuOTAgMTM5LjMyTDYyLjc3IDEzOS4zMkw2Mi43NyAzMi42OEwzNS45MCAzMi42OFoiLz48cGF0aCBpZD0iYm93bCIgZmlsbD0iI0Y1RjJFQSIgZD0iTTY1LjkwIDMyLjY4TDk4LjA0IDMyLjY4UTEwOS45OCAzMi42OCAxMTguOTQgMzYuOTVRMTI3Ljg5IDQxLjIxIDEzMi44NyA0OC43NVExMzcuODUgNTYuMjggMTM3Ljg1IDY2LjM4UTEzNy44NSA3Ni4zMyAxMzIuODcgODMuODdRMTI3Ljg5IDkxLjQwIDExOC45NCA5NS42N1ExMDkuOTggOTkuOTMgOTguMDQgOTkuOTNMNjUuOTAgOTkuOTNMNjUuOTAgNzkuNjBMOTQuNDggNzkuNjBRMTAyLjAyIDc5LjYwIDEwNi40MiA3Ni4xMlExMTAuODMgNzIuNjMgMTEwLjgzIDY2LjM4UTExMC44MyA2MC4xMiAxMDYuNDIgNTYuNjRRMTAyLjAyIDUzLjE1IDk0LjQ4IDUzLjE1TDY1LjkwIDUzLjE1WiIvPjxwYXRoIGlkPSJsZWciIGZpbGw9IiNGNUYyRUEiIGQ9Ik04Mi4yMyAxMDMuMDZMMTEyLjc1IDEwMy4wNkwxNDEuMjYgMTM5LjMyTDExMC4xMiAxMzkuMzJaIi8+PHBhdGggaWQ9ImN1cnNvciIgZmlsbD0iI0ZGQzgzRCIgZD0iTTcwLjc0IDc2LjE5TDc4LjQxIDc2LjE5TDc4LjQxIDU2LjU3TDcwLjc0IDU2LjU3WiIvPjwvZz48L3N2Zz4NCg==">
+<title>ROAMA для партнерів</title>
+<style>
+:root{--bg:#f5f2ea;--ink:#121212;--muted:#56544e;--accent:#121212;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#121212;--ink:#f5f2ea;--muted:#aeaba2;--accent:#ffc83d}}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--ink);padding:16px}
+main{max-width:420px;text-align:center}b{font-size:20px;letter-spacing:.02em}p{color:var(--muted)}
+a{color:var(--accent);display:inline-flex;align-items:center;min-height:44px}
+</style>
+</head>
+<body>
+<main>
+<b>ROAMA для партнерів</b>
+<p id="state">Перевіряю, чи кабінет на зв'язку…</p>
+<noscript><p><a href="https://supports-marilyn-solid-experimental.trycloudflare.com/login">Відкрити кабінет</a></p></noscript>
+</main>
+<script>
+(function () {
+  var target = "https://supports-marilyn-solid-experimental.trycloudflare.com";
+  var health = "https://supports-marilyn-solid-experimental.trycloudflare.com/health";
+  var state = document.getElementById("state");
+  var stop = new AbortController();
+  var timer = setTimeout(function () { stop.abort(); }, 6000);
+  fetch(health, { signal: stop.signal, cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (body) {
+      clearTimeout(timer);
+      if (body && body.ok === true) { location.replace(target + "/login"); return; }
+      throw new Error("down");
+    })
+    .catch(function () { state.textContent = "Кабінет зараз недоступний, спробуйте пізніше."; });
+})();
+</script>
+</body>
+</html>
