@@ -25,8 +25,8 @@
 <meta name="theme-color" content="#0b0907">
 <!-- Round 4 page transition: came here through the curtain → it lifts away (CSS), before the first paint. -->
 <script>try{if(sessionStorage.getItem('roama-curtain')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-entering');sessionStorage.removeItem('roama-curtain')}catch(e){}</script>
-  <script type="module" crossorigin src="../assets/roama-DhkWa3qg.js"></script>
-  <link rel="stylesheet" crossorigin href="../assets/roama-CTczYSpv.css">
+  <script type="module" crossorigin src="../assets/roama-C8tdf5z9.js"></script>
+  <link rel="stylesheet" crossorigin href="../assets/roama-DCjntTXo.css">
   <link rel="preload" href="../assets/Onest-Variable-C_399t6n.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/Unbounded-Variable-I12xPPHz.woff2" as="font" type="font/woff2" crossorigin>
 </head>
@@ -95,11 +95,13 @@
         <!-- TASK-0788: the «This website» items of the privacy policy (pages/privacy.html, pages/de/privacy.html). params: lang (uk|de).
      roama.config.mjs → features.contactForm false (the published site, no endpoint): the order form only opens the visitor's
      mail program. true (an endpoint): the form sends; before switching it on for real, name the receiving service here
-     (HANDOVER.md §3) - a question for the Owner's lawyer. -->
+     (HANDOVER.md §3) - a question for the Owner's lawyer.
+     TASK-0789: the first item of each language is the live demo form (tools/lead_demo, demo 1); keep it true to that code. -->
 
 
+        <li>Das Demo-Formular „Selbst ausprobieren“ (auf den Seiten „Anfragen in Telegram und Tabelle“ und „Demos“) ist ein Test, bitte geben Sie dort keine echten Daten ein. Wenn Sie das Formular berühren, holt der Browser einen Einmal-Schlüssel von unserem Google-Apps-Script (Google); nach dem Senden gehen Ihre Eingaben (Name, Kontakt, Leistung, Text) und die Adresse der Seite dorthin. Wie jeder Server sieht Google technische Daten der Anfrage, zum Beispiel die IP-Adresse. Das Script schreibt die Daten als Zeile in eine Google-Tabelle von ROAMA und löscht die Zeile selbst nach 24 Stunden (stündliche Prüfung, also spätestens nach 25 Stunden). Die Antwort zeigt Ihnen nur Ihre eigene Zeile: Andere Besucher sehen sie nicht. Wenn Sie auf „In Telegram öffnen“ und „Start“ tippen, schickt unser Demo-Bot nur die gewählte Leistung und den maskierten Kontakt in Ihren Chat; bis dahin warten sie bis zu 30 Minuten im Zwischenspeicher des Scripts. Die Kennung Ihres Chats schreiben wir nirgends auf: Sie liegt nur bis zu einer Stunde in einem Zähler, der die Zahl der Nachrichten an einen Chat begrenzt. Auf Demo-Anfragen antworten wir nicht, und wir nutzen die Daten nicht für Newsletter oder Werbung. Rechtsgrundlage ist Ihre Anfrage, die Demo auszuprobieren (Art. 6 Abs. 1 lit. b DSGVO), und für den Schutz des Formulars vor Missbrauch unser berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO). Empfänger: Google (Tabelle und Script) und Telegram, wenn Sie selbst auf „Start“ getippt haben. Eine frühere Löschung der Zeile erhalten Sie per E-Mail an <a href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a>.</li>
 
-        <li>Die Website verwendet keine Cookies, keine Analyse und keine Werbepixel. Die Schriften liegen auf der Website selbst, der Browser ruft also keine anderen Server auf.</li>
+        <li>Die Website verwendet keine Cookies, keine Analyse und keine Werbepixel. Die Schriften liegen auf der Website selbst, der Browser ruft also keine anderen Server auf. Ausnahme ist das Demo-Formular aus diesem Abschnitt: Den Server von Google ruft der Browser erst auf, wenn Sie dieses Formular berühren.</li>
         <li>Das Formular „Bestellen“ sendet und speichert selbst nichts: Der Button öffnet nur Ihr E-Mail-Programm mit einer fertigen Nachricht an <a href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a>. Senden tun Sie selbst. Die Nachricht enthält, was Sie eingetragen haben (Name, Kontakt – Telefon, E-Mail oder Telegram, Leistung, Text), und die Adresse der Seite, von der Sie schreiben, mit utm_-Parametern, falls die Adresse welche enthält. Wir erhalten sie als normale E-Mail in Gmail (Google) und nutzen sie, um Ihnen zu antworten.</li>
 
 
@@ -181,6 +183,7 @@
         <li><a class="site-footer__link" href="/preview/de/services/">Leistungen</a></li>
         <li><a class="site-footer__link" href="/preview/de/how-we-work/">So arbeiten wir</a></li>
         <li><a class="site-footer__link" href="/preview/de/cartoon/">Serie</a></li>
+        <li><a class="site-footer__link" href="/preview/de/demos/">Demos</a></li>
         <li><a class="site-footer__link" href="/preview/de/about/">Über uns</a></li>
         <li><a class="site-footer__link" href="/preview/de/faq/">FAQ</a></li>
         <li><a class="site-footer__link" href="/preview/de/contact/">Kontakt</a></li>

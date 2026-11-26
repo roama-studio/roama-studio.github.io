@@ -26,8 +26,8 @@
 <meta name="theme-color" content="#0b0907">
 <!-- Round 4 page transition: came here through the curtain → it lifts away (CSS), before the first paint. -->
 <script>try{if(sessionStorage.getItem('roama-curtain')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-entering');sessionStorage.removeItem('roama-curtain')}catch(e){}</script>
-  <script type="module" crossorigin src="../../assets/roama-DhkWa3qg.js"></script>
-  <link rel="stylesheet" crossorigin href="../../assets/roama-CTczYSpv.css">
+  <script type="module" crossorigin src="../../assets/roama-C8tdf5z9.js"></script>
+  <link rel="stylesheet" crossorigin href="../../assets/roama-DCjntTXo.css">
   <link rel="preload" href="../../assets/Onest-Variable-C_399t6n.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../assets/Unbounded-Variable-I12xPPHz.woff2" as="font" type="font/woff2" crossorigin>
 </head>
@@ -105,6 +105,52 @@
         <div class="block__body"><ul class="svc-list"><li>Форму на сайті з потрібними вам полями.</li><li>Повідомлення про кожну заявку у вашому Telegram.</li><li>Рядок у вашій Google Таблиці з датою й даними заявки.</li><li>Усі заявки в одному місці, без пошуку в пошті.</li><li>Перевірку, що заявки доходять і з телефона, і з компʼютера.</li></ul></div>
       </section>
     </div>
+    <section class="sec roama-container lead-demo-block" id="demo" aria-labelledby="demo-title">
+      <p class="eyebrow">Демо</p>
+      <h2 class="display sec__title" id="demo-title" style="--lw: 9">Спробуйте самі</h2>
+      <p class="lead">Це справжня форма: вона пише рядок у нашу Google Таблицю, а демо-бот @roama_demo_leads_bot надсилає заявку у ваш Telegram, коли ви натиснете «Start».</p>
+      <p class="lead-demo-block__warn"><strong>Демо: не вводьте справжні дані. Рядок видаляється з таблиці через 24 години.</strong></p>
+      <div class="lead-demo-block__form">
+        <!-- TASK-0789 lead form «roama-demo», built by tools/lead_demo/build.mjs from its config.json: edit the config, not this file. -->
+        <form class="roama-form lead-demo" lang="uk" data-roama-form data-lead-demo>
+          <div class="roama-field">
+            <label for="roama-demo-name">Імʼя</label>
+            <input type="text" id="roama-demo-name" name="name" required maxlength="60" placeholder="Олена" autocomplete="given-name">
+          </div>
+          <div class="roama-field">
+            <label for="roama-demo-contact">Контакт</label>
+            <input type="text" id="roama-demo-contact" name="contact" required maxlength="80" placeholder="+380… або @нік або e-mail">
+          </div>
+          <div class="roama-field">
+            <label for="roama-demo-service">Послуга</label>
+            <select id="roama-demo-service" name="service" required>
+              <option value="">—</option>
+              <option value="Сайт">Сайт</option>
+              <option value="Telegram-бот">Telegram-бот</option>
+              <option value="Магазин">Магазин</option>
+              <option value="Логотип">Логотип</option>
+              <option value="Інше">Інше</option>
+            </select>
+          </div>
+          <div class="roama-field">
+            <label for="roama-demo-message">Повідомлення</label>
+            <textarea id="roama-demo-message" name="message" rows="3" maxlength="300" placeholder="Коротко про задачу" data-roama-autosize></textarea>
+          </div>
+          <div class="lead-demo__trap" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
+            <label for="roama-demo-ld_extra_note">ld_extra_note</label>
+            <input type="text" id="roama-demo-ld_extra_note" name="ld_extra_note" tabindex="-1" autocomplete="off">
+          </div>
+          <button class="button" type="submit" disabled>Надіслати заявку</button>
+          <p class="lead-demo__status" role="status" aria-live="polite" data-lead-demo-status></p>
+          <div class="lead-demo__result" data-lead-demo-result hidden></div>
+          <p class="lead-demo__note">Це демо: заявка лежить у нашій Google-таблиці до 24 годин і йде лише у ваш Telegram. Інші відвідувачі її не бачать. <a href="/preview/privacy.html">Конфіденційність</a></p>
+          <script type="application/json" data-lead-demo-config>{"endpoint":"https://script.google.com/macros/s/AKfycby4-nk6XY_WYrpFQF132xXg8ZTZgDhaIRImFsZDv5l7TcNY8JD6doiC_CBxFaFuSqYLwA/exec","mode":"visitor","bot":"roama_demo_leads_bot","honeypot":"ld_extra_note","min_ms":2500,"button_class":"button","fields":[{"name":"name","type":"text","label":"Імʼя"},{"name":"contact","type":"contact","label":"Контакт"},{"name":"service","type":"select","label":"Послуга"},{"name":"message","type":"textarea","label":"Повідомлення"}],"texts":{"submit":"Надіслати заявку","sending":"Надсилаємо…","done":"Заявку прийнято.","your_row":"Ваш рядок у таблиці","error":"Не вдалося надіслати. Спробуйте, будь ласка, ще раз за хвилину.","privacy":"Це демо: заявка лежить у нашій Google-таблиці до 24 годин і йде лише у ваш Telegram. Інші відвідувачі її не бачать.","privacy_link":"Конфіденційність","privacy_url":"/privacy.html","telegram_title":"Демо ROAMA — це тестове повідомлення з форми на сайті:","done_visitor":"Заявку записано в таблицю. Натисніть кнопку нижче й «Start» у Telegram: бот надішле її саме вам.","open_bot":"Відкрити в Telegram","waiting":"Чекаємо, поки ви натиснете «Start» у боті…","delivered":"Готово: заявка прийшла вам у Telegram.","bot_hello":"Це демо-бот ROAMA. Заповніть форму на сайті й натисніть кнопку «Відкрити в Telegram» під нею: заявка прийде сюди.","bot_expired":"Цю заявку вже надіслано або посилання застаріло. Заповніть форму ще раз, якщо треба.","demo_local":"Зараз багато заявок, тож показуємо демо без відправки: ось як виглядав би ваш рядок у таблиці. Спробуйте Telegram за кілька хвилин.","errors":{"busy":"Зараз забагато заявок. Спробуйте, будь ласка, за кілька хвилин.","too_long":"Задовгий текст. Скоротіть, будь ласка.","required":"Заповніть, будь ласка, обовʼязкові поля.","choice":"Оберіть, будь ласка, варіант зі списку.","contact":"Вкажіть телефон, e-mail або @нік у Telegram.","early":"Секунду, і надішліть ще раз.","token":"Оновіть сторінку й надішліть ще раз."}}}</script>
+        </form>
+        <noscript><p class="lead-demo__note">Без JavaScript ця форма не надсилається: напишіть нам на roama.studio@gmail.com.</p></noscript>
+      </div>
+      <p class="lead-demo-block__more">У Telegram бот надсилає лише вибрану послугу й замаскований контакт. Імʼя й текст лишаються тільки в таблиці. Ваш рядок бачите лише ви. <a class="link-arrow" href="/preview/demos/">Усі демо</a></p>
+    </section>
+    <script type="module" src="../../demo/lead-form.js"></script>
     <section class="sec roama-container svc-steps" aria-labelledby="steps-title">
       <h2 class="display sec__title reveal" id="steps-title" style="--lw: 8">Як ми працюємо крок за кроком</h2>
       <ol class="svc-steps__list" data-reveal-group>
@@ -198,6 +244,7 @@
         <li><a class="site-footer__link" href="/preview/services/">Послуги</a></li>
         <li><a class="site-footer__link" href="/preview/how-we-work/">Як ми працюємо</a></li>
         <li><a class="site-footer__link" href="/preview/cartoon/">Мультсеріал</a></li>
+        <li><a class="site-footer__link" href="/preview/demos/">Демо</a></li>
         <li><a class="site-footer__link" href="/preview/about/">Про нас</a></li>
         <li><a class="site-footer__link" href="/preview/faq/">FAQ</a></li>
         <li><a class="site-footer__link" href="/preview/contact/">Контакти</a></li>

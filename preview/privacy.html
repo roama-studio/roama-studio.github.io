@@ -25,8 +25,8 @@
 <meta name="theme-color" content="#0b0907">
 <!-- Round 4 page transition: came here through the curtain → it lifts away (CSS), before the first paint. -->
 <script>try{if(sessionStorage.getItem('roama-curtain')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-entering');sessionStorage.removeItem('roama-curtain')}catch(e){}</script>
-  <script type="module" crossorigin src="./assets/roama-DhkWa3qg.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/roama-CTczYSpv.css">
+  <script type="module" crossorigin src="./assets/roama-C8tdf5z9.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/roama-DCjntTXo.css">
   <link rel="preload" href="./assets/Onest-Variable-C_399t6n.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./assets/Unbounded-Variable-I12xPPHz.woff2" as="font" type="font/woff2" crossorigin>
 </head>
@@ -95,10 +95,12 @@
         <!-- TASK-0788: the «This website» items of the privacy policy (pages/privacy.html, pages/de/privacy.html). params: lang (uk|de).
      roama.config.mjs → features.contactForm false (the published site, no endpoint): the order form only opens the visitor's
      mail program. true (an endpoint): the form sends; before switching it on for real, name the receiving service here
-     (HANDOVER.md §3) - a question for the Owner's lawyer. -->
+     (HANDOVER.md §3) - a question for the Owner's lawyer.
+     TASK-0789: the first item of each language is the live demo form (tools/lead_demo, demo 1); keep it true to that code. -->
 
+        <li>Демо-форма «Спробуйте самі» (на сторінках «Заявки в Telegram і Таблицю» і «Демо») — тестова, тому просимо не вводити справжні дані. Коли ви торкаєтеся форми, браузер отримує одноразовий ключ від нашого скрипта Google Apps Script (Google); після надсилання туди йде те, що ви вписали (імʼя, контакт, послуга, текст), і адреса сторінки. Як і будь-який сервер, Google бачить технічні дані запиту, наприклад IP-адресу. Скрипт записує ці дані рядком у Google Таблицю ROAMA і сам видаляє рядок через 24 години (перевірка щогодини, тож не пізніше ніж за 25 годин). Відповідь показує вам лише ваш рядок: інші відвідувачі його не бачать. Якщо ви натиснете «Відкрити в Telegram» і «Start», наш демо-бот надішле у ваш чат лише вибрану послугу й замаскований контакт; до цього вони до 30 хвилин чекають у тимчасовій памʼяті скрипта. Ідентифікатор вашого чату ми не записуємо: він лише до години лежить у лічильнику, що обмежує кількість повідомлень одному чату. Ми не відповідаємо на демо-заявки й не використовуємо ці дані для розсилок чи реклами. Підстава обробки — ваш запит спробувати демо (ст. 6 (1) (b) GDPR), а для захисту форми від зловживань — наш законний інтерес (ст. 6 (1) (f) GDPR). Одержувачі: Google (Таблиця й скрипт) і Telegram, якщо ви самі натиснули «Start». Видалити рядок раніше можна листом на <a href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a>.</li>
 
-        <li>Сайт не використовує файли cookie, аналітику чи рекламні пікселі. Шрифти лежать на самому сайті, тож браузер не звертається до інших серверів.</li>
+        <li>Сайт не використовує файли cookie, аналітику чи рекламні пікселі. Шрифти лежать на самому сайті, тож браузер не звертається до інших серверів. Виняток — демо-форма з цього розділу: до сервера Google браузер звертається лише тоді, коли ви торкаєтеся цієї форми.</li>
         <li>Форма «Замовити» сама нічого не надсилає і нічого не зберігає: кнопка лише відкриває вашу поштову програму з готовим листом на <a href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a>. Лист надсилаєте ви. У ньому те, що ви вписали (імʼя, контакт — телефон, e-mail чи Telegram, послуга, текст), і адреса сторінки, з якої ви писали, разом із мітками utm_, якщо вони є в адресі. Ми отримуємо його як звичайний лист у пошті Gmail (Google) і використовуємо, щоб відповісти вам.</li>
 
 
@@ -180,6 +182,7 @@
         <li><a class="site-footer__link" href="/preview/services/">Послуги</a></li>
         <li><a class="site-footer__link" href="/preview/how-we-work/">Як ми працюємо</a></li>
         <li><a class="site-footer__link" href="/preview/cartoon/">Мультсеріал</a></li>
+        <li><a class="site-footer__link" href="/preview/demos/">Демо</a></li>
         <li><a class="site-footer__link" href="/preview/about/">Про нас</a></li>
         <li><a class="site-footer__link" href="/preview/faq/">FAQ</a></li>
         <li><a class="site-footer__link" href="/preview/contact/">Контакти</a></li>
