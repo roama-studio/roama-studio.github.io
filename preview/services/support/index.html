@@ -7,7 +7,7 @@
   <!-- params: title, description, path (this page), uk, de (the page in each language) -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Підтримка сайту після запуску для малого бізнесу — ROAMA</title>
+<title>Підтримка сайту після запуску для малого бізнесу — ROAMA</title>
 <meta name="description" content="Після запуску сайт не лишається без нагляду: вносимо зміни, оновлюємо й перевіряємо, що все працює на телефоні й компʼютері. Напишіть ROAMA.">
 <link rel="canonical" href="https://roama-studio.github.io/preview/services/support/">
 <link rel="alternate" hreflang="uk" href="https://roama-studio.github.io/preview/services/support/">
@@ -15,7 +15,7 @@
 <link rel="alternate" hreflang="x-default" href="https://roama-studio.github.io/preview/services/support/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ROAMA">
-<meta property="og:title" content="Підтримка сайту після запуску для малого бізнесу — ROAMA">
+<meta property="og:title" content="Підтримка сайту після запуску для малого бізнесу — ROAMA">
 <meta property="og:description" content="Після запуску сайт не лишається без нагляду: вносимо зміни, оновлюємо й перевіряємо, що все працює на телефоні й компʼютері. Напишіть ROAMA.">
 <meta property="og:url" content="https://roama-studio.github.io/preview/services/support/">
 <meta property="og:image" content="https://roama-studio.github.io/preview/social/og-1200x630.png">
@@ -26,13 +26,15 @@
 <meta name="theme-color" content="#0b0907">
 <!-- Round 4 page transition: came here through the curtain → it lifts away (CSS), before the first paint. -->
 <script>try{if(sessionStorage.getItem('roama-curtain')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-entering');sessionStorage.removeItem('roama-curtain')}catch(e){}</script>
-  <script type="module" crossorigin src="../../assets/roama-r7aoztyj.js"></script>
-  <link rel="stylesheet" crossorigin href="../../assets/roama-DVaMvwQO.css">
+  <script type="module" crossorigin src="../../assets/roama-DhkWa3qg.js"></script>
+  <link rel="stylesheet" crossorigin href="../../assets/roama-CTczYSpv.css">
   <link rel="preload" href="../../assets/Onest-Variable-C_399t6n.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../assets/Unbounded-Variable-I12xPPHz.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
-  <!-- params: active, lang (uk|de), alt = the same page in the other language -->
+  <!-- params: active, lang (uk|de), alt = the same page in the other language.
+     TASK-0788 r3: from 992 px, past the first section, the bar becomes a floating pill (components/header-capsule.js):
+     the mark, «Послуги» and .site-header__order; the mark and the order button show only there. -->
 <!-- Round 4 atmosphere of every page (styles/components/_atmos.scss, scripts/components/studio-atmos.js):
      the film grain, the one amber lamp that follows Atlas / the active section, and the curtain of the page
      transitions. Decoration only: aria-hidden, pointer-events none, never over the focus ring's contrast. -->
@@ -42,15 +44,16 @@
 </div>
 <div class="curtain" aria-hidden="true"><span class="curtain__line"></span></div>
 <a class="skip-link" href="#main">Перейти до змісту</a>
-<header class="site-header" data-roama-header>
+<header class="site-header" data-roama-header data-roama-header-hide>
   <div class="roama-container site-header__inner">
-    <a class="site-header__logo" href="/preview/"><img src="../../logo/roama-horizontal-on-dark.svg" alt="ROAMA" width="132" height="32"></a>
+    <a class="site-header__logo" href="/preview/"><img class="site-header__word" src="../../logo/roama-horizontal-on-dark.svg" alt="ROAMA" width="132" height="32"><img class="site-header__mark" src="../../logo/roama-icon-on-dark.svg" alt="ROAMA" width="40" height="40"></a>
     <a class="site-header__lang" href="/preview/de/services/support/" hreflang="de" lang="de">DE<span class="roama-visually-hidden"> — auf Deutsch</span></a>
     <button class="roama-burger site-header__burger" type="button" data-roama-burger aria-controls="site-menu" aria-expanded="false">
       <span class="roama-burger__lines" aria-hidden="true"></span>
       <span class="roama-visually-hidden">Меню</span>
     </button>
-    <!-- params: active (services|how-we-work|cartoon|about|faq|contact), lang (uk|de). Same slugs in both languages, DE under /de/. -->
+    <!-- TASK-0788 r3: .site-nav__extra = «Замовити» + the e-mail at the bottom of the phone menu (hidden on the computer).
+     params: active (services|how-we-work|cartoon|about|faq|contact), lang (uk|de). Same slugs in both languages, DE under /de/. -->
 
 <nav class="site-nav" id="site-menu" aria-label="Головне меню" data-lenis-prevent>
   <ul class="site-nav__list">
@@ -72,9 +75,14 @@
     <li><a class="site-nav__link" href="/preview/faq/">FAQ</a></li>
     <li><a class="site-nav__link site-nav__link--cta" href="/preview/contact/">Контакти</a></li>
   </ul>
+  <div class="site-nav__extra">
+    <a class="button site-nav__order" href="/preview/contact/" data-roama-dialog-open="order" data-order="">Замовити</a>
+    <a class="site-nav__mail" href="mailto:roama.studio@gmail.com"><span class="roama-visually-hidden">Написати на </span>roama.studio@gmail.com</a>
+  </div>
 </nav>
 
 
+    <a class="button site-header__order" href="/preview/contact/" data-roama-dialog-open="order" data-order="">Замовити</a>
   </div>
 </header>
 
@@ -120,7 +128,7 @@
         </details>
       </div>
     </section>
-    <!-- params: lang (uk|de), heading, body (texts of the page's contact section, site_texts word for word), id (unique per page, default "contact"), tag (h2; h1 on the contact page) -->
+    <!-- params: lang (uk|de), heading, body (texts of the page's contact section, site_texts word for word), id (unique per page, default "contact"), tag (h2; h1 on the contact page), order (uk|de: a «Замовити» button that opens the order dialog, the contact page only) -->
 <!-- roama.config.mjs → features.contactForm: false = the e-mail block, true = the form (endpoint = features.contactEndpoint) -->
 <section class="contact-block roama-container" id="contact" aria-labelledby="contact-title">
   <p class="contact-block__kicker" aria-hidden="true">roama.studio</p>
@@ -144,11 +152,14 @@
 
 
 
+
+
 </section>
     <nav class="sec roama-container svc-next" aria-labelledby="other-title">
       <p class="svc-next__row"><a class="svc-next__link" href="/preview/services/redesign/"><span>Наступна послуга</span> Редизайн сайту →</a><a class="button" href="/preview/contact/" data-roama-dialog-open="order" data-order="support">Замовити</a></p>
-      <h2 class="eyebrow" id="other-title">Інші послуги</h2>
-      <div class="svc-groups"><div class="svc-groups__group"><h3 class="svc-groups__room">Ada · продажі</h3><ul class="svc-groups__list"><li><a class="svc-groups__link" href="/preview/services/order-bot/">Telegram-бот для замовлень</a></li><li><a class="svc-groups__link" href="/preview/services/lead-forms/">Заявки в Telegram і Таблицю</a></li></ul></div><div class="svc-groups__group"><h3 class="svc-groups__room">Maya · проєкти</h3><ul class="svc-groups__list"><li><a class="svc-groups__link" href="/preview/services/complex/">Комплексне рішення</a></li></ul></div><div class="svc-groups__group"><h3 class="svc-groups__room">Iris · дизайн</h3><ul class="svc-groups__list"><li><a class="svc-groups__link" href="/preview/services/redesign/">Редизайн сайту</a></li><li><a class="svc-groups__link" href="/preview/services/logo/">Логотип і набір знака</a></li><li><a class="svc-groups__link" href="/preview/services/graphics/">Графіка для бізнесу</a></li></ul></div><div class="svc-groups__group"><h3 class="svc-groups__room">Max · розробка</h3><ul class="svc-groups__list"><li><a class="svc-groups__link" href="/preview/services/landing/">Лендинг під ключ</a></li><li><a class="svc-groups__link" href="/preview/services/multipage/">Сайт на кілька сторінок</a></li><li><a class="svc-groups__link" href="/preview/services/wordpress/">Сайт на WordPress з адмінкою</a></li><li><a class="svc-groups__link" href="/preview/services/shop/">Інтернет-магазин</a></li><li><a class="svc-groups__link" href="/preview/services/web-app/">Вебзастосунок на замовлення</a></li><li><a class="svc-groups__link" href="/preview/services/edits/">Правки наявного сайту</a></li></ul></div><div class="svc-groups__group"><h3 class="svc-groups__room">Quinn · перевірка</h3><ul class="svc-groups__list"><li><a class="svc-groups__link" href="/preview/services/content-safety/">Захист сайту від поломок</a></li><li><a class="svc-groups__link" href="/preview/services/analytics/">Аналітика та cookie</a></li></ul></div><div class="svc-groups__group"><h3 class="svc-groups__room">Theo · 3D і відео</h3><ul class="svc-groups__list"><li><a class="svc-groups__link" href="/preview/services/3d-models/">3D-моделі, рендери й талісмани</a></li><li><a class="svc-groups__link" href="/preview/services/3d-hero/">3D-обʼєкт у першому екрані сайту</a></li><li><a class="svc-groups__link" href="/preview/services/logo-animation/">Анімація логотипа</a></li><li><a class="svc-groups__link" href="/preview/services/video/">Відео та мультфільми</a></li></ul></div><div class="svc-groups__group"><h3 class="svc-groups__room">Видимість у ШІ</h3><ul class="svc-groups__list"><li><a class="svc-groups__link" href="/preview/services/geo/">Видимість у ШІ (GEO)</a></li><li><a class="svc-groups__link" href="/preview/services/seo/">SEO-перевірка та статті</a></li><li><a class="svc-groups__link" href="/preview/services/texts/">Тексти для сайту</a></li></ul></div></div>
+      <h2 class="eyebrow" id="other-title">Також підійде</h2>
+      <ul class="svc-related"><li><a class="svc-related__link" href="/preview/services/complex/">Комплексне рішення<span aria-hidden="true">→</span></a></li><li><a class="svc-related__link" href="/preview/services/logo/">Логотип і набір знака<span aria-hidden="true">→</span></a></li><li><a class="svc-related__link" href="/preview/services/graphics/">Графіка для бізнесу<span aria-hidden="true">→</span></a></li></ul>
+      <p class="svc-related__all"><a class="link-arrow" href="/preview/services/">Усі послуги</a></p>
     </nav>
   </main>
 
@@ -225,7 +236,7 @@
   </div>
   <div class="roama-dialog__body order__body">
 
-    <p class="order__lead">Заповніть поля — відкриється ваша пошта з готовим листом на roama.studio@gmail.com. Сам сайт нічого не надсилає.</p>
+    <p class="order__lead">Заповніть поля, і кнопка відкриє ваш поштовий застосунок з готовим листом на roama.studio@gmail.com.</p>
 
 
     <form class="roama-form order__form" method="post" novalidate data-roama-form data-order-form data-endpoint="">
@@ -253,7 +264,7 @@
       </div>
       <div class="roama-field">
         <label for="order-message">Коротко про задачу <span class="order__optional">(необовʼязково)</span></label>
-        <textarea id="order-message" name="message" rows="3" maxlength="500" data-roama-autosize></textarea>
+        <textarea id="order-message" name="message" rows="4" maxlength="500"></textarea>
       </div>
       <input type="hidden" name="page" data-order-page>
       <input type="hidden" name="utm_source" data-order-utm>
