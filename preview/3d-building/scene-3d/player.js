@@ -91,6 +91,35 @@ const FILM = {
     }`,
 }
 
+// ROAMA 0788: the quality tiers of the player (see draw() in createPlayer) and the probe that picks one.
+// dpr = the highest device pixel ratio drawn; window = draws per verdict, slow = the median delay (ms) from a draw to
+// the next animation frame that counts as slow (~30 fps), skip = draws ignored after the start or a step down
+// (shaders, first uploads), enough = fast windows after which the probe stops, ignore = longer = a pause, not a frame.
+const TIERS = [
+  { dpr: 2, bloom: true, film: true, samples: 4 },
+  { dpr: 1.5, bloom: false, film: true, samples: 4 },
+  { dpr: 1, bloom: false, film: false, samples: 4 },
+  { dpr: 0.75, bloom: false, film: false, samples: 2 },
+]
+const PROBE = { window: 12, slow: 32, skip: 4, enough: 3, ignore: 4000 }
+// QA: ?slow3d=MS sets the slow mark (?slow3d=1 steps down on any GPU, to see the steps and their cost)
+const slowMark = /[?&]slow3d=(\d+)/.exec(globalThis.location?.search ?? '')
+if (slowMark) PROBE.slow = Number(slowMark[1])
+// The tier found by one scene is where the next one starts (the tower after the hero, the next page of the visit).
+const TIER_KEY = 'roama-3d-tier'
+let foundTier = 0
+// While a scene loads and warms its shaders (here or in another scene of the page) frames are slow for that reason
+// alone: the probe does not judge them (createPlayer pushes this mark 2.5 s past its end).
+let warmUntil = 0
+function startTier() {
+  try { foundTier = Math.max(foundTier, Number(sessionStorage.getItem(TIER_KEY)) || 0) } catch { /* storage off */ }
+  return Math.min(foundTier, TIERS.length - 1)
+}
+function rememberTier(n) {
+  foundTier = Math.max(foundTier, n)
+  try { sessionStorage.setItem(TIER_KEY, String(foundTier)) } catch { /* storage off */ }
+}
+
 // How a living flame breathes: three slow waves, 0..1.
 const flame = (t, phase) => 0.5 + 0.5 * (0.5 * Math.sin(t * 7.3 + phase) + 0.3 * Math.sin(t * 13.1 + phase * 2) + 0.2 * Math.sin(t * 2.3))
 
@@ -441,11 +470,99 @@ export async function createPlayer(lib, host, manifest, options) {
     for (const [o, m] of materials) o.material = m
     for (const o of hidden) o.visible = true
   }
-  const render = () => {
-    if (!composer) return renderer.render(scene, camera)
-    if (bloomComposer) renderBloom()
+  // ROAMA 0788: quality tiers. 0 = the full look; each next one is lighter: no bloom (a second scene draw + the blur
+  // chain) and a pixel ratio of at most 1.5, then no grain/vignette pass and 1x, then 0.75x. A probe after every draw
+  // (the delay to the next animation frame: the GPU holds it back when it is behind) steps down while frames are
+  // slow; past the last tier the host gets 'scene-slow' (scene-3d.js shows the poster). Only down, never up.
+  // ?tier3d=N fixes the tier (QA). A scene without moving nodes draws its shadow maps once.
+  const mixPass = composer?.passes.find((p) => p.uniforms?.bloomTexture) ?? null
+  const staticShadows = !Object.keys(nodes).length
+  const fixed = /[?&]tier3d=(\d)/.exec(globalThis.location?.search ?? '')
+  let tier = Math.min(TIERS.length - 1, fixed ? Number(fixed[1]) : startTier())
+  let stopped = false
+  const draw = () => {
+    if (stopped) return
+    if (!composer) { renderer.render(scene, camera); return }
+    const t = TIERS[tier]
+    const bloomOn = !!bloomComposer && t.bloom
+    if (mixPass) mixPass.enabled = bloomOn
+    if (film) film.enabled = t.film
+    if (bloomOn) renderBloom()
     composer.render()
     shadowsBuilt = true
+    if (staticShadows) renderer.shadowMap.autoUpdate = false
+  }
+  const applyTier = (n) => {
+    tier = n
+    host.dataset.tier = String(n)
+    renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, TIERS[n].dpr))
+    for (const target of composer ? [composer.renderTarget1, composer.renderTarget2] : []) {
+      if (target.samples === TIERS[n].samples) continue
+      target.samples = TIERS[n].samples
+      target.dispose() // three rebuilds it with the new sample count on the next draw
+    }
+  }
+  applyTier(tier)
+  let probing = !fixed
+  let skip = PROBE.skip
+  let passed = 0
+  let strikes = 0
+  const samples = []
+  let waiting = false
+  const probe = () => {
+    if (!probing || waiting || stopped) return
+    waiting = true
+    const drawn = performance.now()
+    requestAnimationFrame(() => {
+      waiting = false
+      const d = performance.now() - drawn
+      if (document.hidden || d > PROBE.ignore || performance.now() < warmUntil) return
+      if (skip > 0) { skip -= 1; return }
+      samples.push(d)
+      if (samples.length < PROBE.window) return
+      samples.sort((a, b) => a - b)
+      const median = samples[samples.length >> 1]
+      samples.length = 0
+      if (median <= PROBE.slow) {
+        strikes = 0
+        passed += 1
+        if (passed >= PROBE.enough) probing = false // fast enough: stop measuring for good
+        return
+      }
+      strikes += 1
+      // two slow windows in a row (one hitch is not a slow machine); a window twice as slow decides at once
+      if (strikes < 2 && median <= PROBE.slow * 2) return
+      strikes = 0
+      // 8x the mark (under 4 fps): no tier saves it (tier 3 is ~4x cheaper than tier 0) - the poster at once
+      if (tier < TIERS.length - 1 && median <= PROBE.slow * 8) {
+        applyTier(tier + 1)
+        rememberTier(tier)
+        skip = PROBE.skip
+        resize()
+      } else {
+        probing = false
+        rememberTier(TIERS.length)
+        host.dispatchEvent(new CustomEvent('scene-slow'))
+      }
+    })
+  }
+  // one draw per task: the scroll's seek and an add-on's render() in the same task draw once
+  let queued = false
+  const render = () => {
+    if (queued) return
+    queued = true
+    queueMicrotask(() => {
+      queued = false
+      // another scene of the page (or the last page) already found this machine slower: start there
+      if (!fixed && foundTier > tier) {
+        if (foundTier >= TIERS.length) { stopped = true; host.dispatchEvent(new CustomEvent('scene-slow')); return }
+        applyTier(foundTier)
+        resize()
+        return
+      }
+      draw()
+      probe()
+    })
   }
 
   function resize() {
@@ -531,6 +648,7 @@ export async function createPlayer(lib, host, manifest, options) {
   watcher.observe(host)
   resize()
   if (mode === 'scroll') seek(0)
+  warmUntil = Math.max(warmUntil, performance.now() + 2500) // ROAMA 0788: just warmed - no verdicts yet
 
   return {
     mode,
@@ -544,8 +662,12 @@ export async function createPlayer(lib, host, manifest, options) {
     },
     seek,
     render,
+    draw, // ROAMA 0788: a draw now (tools measure it); render() draws once at the end of the task
     resize,
     setVisible,
+    get tier() { return tier },
+    // ROAMA 0788: the poster takes over (scene-slow): no more drawing
+    stop() { setVisible(false); stopped = true },
     // What one frame costs (shadow pass included): draw calls, triangles, GPU objects.
     info() {
       // What the model costs (shadow pass included), without the film look's own passes.
@@ -557,6 +679,7 @@ export async function createPlayer(lib, host, manifest, options) {
     },
     dispose() {
       setVisible(false)
+      stopped = true
       watcher.disconnect()
       controls?.dispose()
       composer?.dispose()

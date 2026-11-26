@@ -81,6 +81,25 @@ function hasWebGL() {
   }
 }
 
+// ROAMA 0788: WebGL drawn by the CPU (SwiftShader, llvmpipe, Windows' basic display driver: an old PC without a GPU
+// driver) moves a 3D scene at one frame per second or slower - such a page gets the poster, as without WebGL.
+// So does a visit in which the player already fell to its last tier and gave up (player.js, 'roama-3d-tier' = 4).
+function slowGL() {
+  if (/[?&](tier3d=|probe3d)/.test(location.search)) return false // QA: ?tier3d=N (a fixed tier) or ?probe3d (the probe decides) run the 3D anyway
+  try {
+    if (Number(sessionStorage.getItem('roama-3d-tier')) >= 4) return true
+  } catch { /* storage off */ }
+  try {
+    const gl = document.createElement('canvas').getContext('webgl2')
+    const info = gl?.getExtension('WEBGL_debug_renderer_info')
+    const name = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : ''
+    gl?.getExtension('WEBGL_lose_context')?.loseContext()
+    return /swiftshader|llvmpipe|softpipe|basic render/i.test(name)
+  } catch {
+    return false
+  }
+}
+
 class Scene3DElement extends HTMLElement {
   async connectedCallback() {
     if (this.started) return
@@ -105,7 +124,7 @@ class Scene3DElement extends HTMLElement {
     const saveData = navigator.connection?.saveData === true
     // ROAMA r4b (iPhone 15): still-below="768" = phones show the still, no live WebGL behind a scrubbed pin
     const phoneStill = this.hasAttribute('still-below') && innerWidth < Number(this.getAttribute('still-below'))
-    if (this.reduced || saveData || phoneStill || !hasWebGL()) {
+    if (this.reduced || saveData || phoneStill || !hasWebGL() || slowGL()) {
       if (mode === 'scroll') { // a still in the flow, not a pinned screen
         this.style.height = ''
         this.style.aspectRatio = String(m.aspect ?? 1.6)
@@ -218,6 +237,17 @@ class Scene3DElement extends HTMLElement {
     this.small = small
     const modelUrl = new URL(small ? m.models.mobile : m.models.desktop, this.manifestUrl).href
     const [lib, motion] = await Promise.all([loadThree(), this.mode === 'scroll' ? loadGsap() : null])
+    // ROAMA 0788: the player's lightest tier is still too slow here (or another scene of the visit already gave up,
+    // which the player can say before it has even returned): the poster stands in for the 3D. The pin, the scroll and
+    // the texts over it go on; the canvas stops drawing and fades out.
+    const slow = () => {
+      this.slow = true
+      this.player?.stop()
+      if (this.poster) this.poster.style.visibility = ''
+      if (this.player) this.player.canvas.style.opacity = '0'
+      this.dataset.state = 'slow'
+    }
+    this.addEventListener('scene-slow', slow, { once: true })
     this.player = await createPlayer(lib, this, m, {
       mode: this.mode,
       modelUrl,
@@ -231,14 +261,15 @@ class Scene3DElement extends HTMLElement {
     const canvas = this.player.canvas
     canvas.style.opacity = '0'
     canvas.style.transition = 'opacity 400ms ease'
-    requestAnimationFrame(() => { canvas.style.opacity = '1' })
+    if (this.slow) slow()
+    else requestAnimationFrame(() => { if (!this.slow) canvas.style.opacity = '1' })
     // The canvas is transparent: once it has faded in, the poster must not show behind a turned model.
-    setTimeout(() => { if (this.poster) this.poster.style.visibility = 'hidden' }, 450)
+    setTimeout(() => { if (this.poster && !this.slow) this.poster.style.visibility = 'hidden' }, 450)
     if (this.mode === 'scroll') this.pin(motion)
     // On screen the viewer turns and the effects play; off screen nothing renders.
     this.watch = new IntersectionObserver((entries) => this.player.setVisible(entries.some((e) => e.isIntersecting)))
     this.watch.observe(this)
-    this.dataset.state = 'ready'
+    if (!this.slow) this.dataset.state = 'ready'
     this.dispatchEvent(new CustomEvent('scene-ready', { detail: this.player }))
   }
 
