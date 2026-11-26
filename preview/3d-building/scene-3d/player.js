@@ -14,7 +14,7 @@
 //   effects: false = a still (no steam, no halo, the glow light does not flicker, the grain stands still)
 //   contact: false = no contact shadow (the review compares the model with its poster)
 //   resolve(path): a manifest path (models/...) -> its URL
-import { autoCamera, ripple, sampleScroll, toThree, verticalFov } from './convert.js'
+import { autoCamera, EXPLODE_DEFAULTS, explodeKeys, explodeProblems, fromThree, ripple, sampleScroll, toThree, verticalFov } from './convert.js'
 
 // The same HDRI turn as on the poster: Blender's equirectangular picture starts half a turn from three.js's.
 const ENV_TURN = 180
@@ -125,13 +125,31 @@ export async function createPlayer(lib, host, manifest, options) {
 
   const scene = new THREE.Scene()
   const pmrem = new THREE.PMREMGenerator(renderer)
+  // ROAMA 0762b: warm the shader programs one per task (the first uniform query blocks while ANGLE links)
+  const warmed = new WeakSet()
+  const nextTask = (ms = 0) => new Promise((resolve) => { // after the next frame is painted (plain timeouts run back to back without a paint); hidden tab: a timeout
+    const t = setTimeout(resolve, ms + 100)
+    requestAnimationFrame(() => { clearTimeout(t); setTimeout(resolve, ms) })
+  })
+  async function warmPrograms() {
+    for (const program of [...(renderer.info.programs || [])]) {
+      if (warmed.has(program)) continue
+      warmed.add(program)
+      for (let i = 0; i < 300 && program.isReady && !program.isReady(); i++) await nextTask(16)
+      program.getUniforms?.()
+      await nextTask()
+    }
+  }
   const sky = light?.environment
   let environment = 'room'
   if (sky && HDRLoader && options.resolve) {
     // The poster's HDRI: its light and its reflections, at the poster's strength and turn.
     const texture = await new HDRLoader().loadAsync(options.resolve(sky.file))
     texture.mapping = THREE.EquirectangularReflectionMapping
+    { const t = new THREE.WebGLRenderTarget(1, 1); renderer.setRenderTarget(t); pmrem.compileEquirectangularShader(); renderer.setRenderTarget(null); t.dispose() } // as PMREM draws: into a target
+    await warmPrograms() // ROAMA 0762b
     scene.environment = pmrem.fromEquirectangular(texture).texture
+    await nextTask()
     scene.environmentIntensity = sky.intensity
     // Blender turns the world round Z; three.js reads the same picture half a turn round Y.
     scene.environmentRotation.set(0, THREE.MathUtils.degToRad((sky.rotation ?? 0) + ENV_TURN), 0)
@@ -331,7 +349,23 @@ export async function createPlayer(lib, host, manifest, options) {
   camera.position.set(...start.position)
   camera.lookAt(target)
 
-  const keys = manifest.scroll?.keys ?? []
+  const keys = [...(manifest.scroll?.keys ?? [])]
+  // TASK-0475: an exploded view adds its parts' keys (from each part's own rest place; phones travel less).
+  const explode = manifest.scroll?.explode
+  if (explode) {
+    const problems = explodeProblems(explode)
+    if (problems.length) console.warn(`scene-3d: explode ignored - ${problems.join('; ')}`)
+    else {
+      const rest = {}
+      for (const part of explode.parts) {
+        const node = model.getObjectByName(part.node)
+        if (node) rest[part.node] = fromThree(node.position.toArray())
+        else console.warn(`scene-3d: no node ${part.node} in the model`)
+      }
+      const phone = matchMedia('(max-width: 600px)').matches
+      keys.push(...explodeKeys(explode, rest, phone ? (explode.phone_travel ?? EXPLODE_DEFAULTS.phone_travel) : 1))
+    }
+  }
   const nodes = {}
   const base = { camera: start, nodes: {} }
   for (const name of new Set(keys.flatMap((k) => Object.keys(k.nodes ?? {})))) {
@@ -491,6 +525,7 @@ export async function createPlayer(lib, host, manifest, options) {
     } : null)
   }
 
+  if (renderer.compileAsync) { try { const warmTarget = composer?.readBuffer ?? null; renderer.setRenderTarget(warmTarget); try { await renderer.compileAsync(scene, camera) } finally { renderer.setRenderTarget(null) }; await warmPrograms() } catch { /* compiles on first render */ } } // ROAMA 0762: async shader compile
   host.appendChild(canvas)
   const watcher = new ResizeObserver(resize)
   watcher.observe(host)

@@ -123,13 +123,24 @@ class Scene3DElement extends HTMLElement {
       return
     }
     this.overlay() // the text waits under its water line for its moment
+    let begun = false
+    const begin = () => {
+      if (begun) return
+      begun = true
+      near.disconnect()
+      this.load().catch((error) => this.fail(error))
+    }
     const near = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        near.disconnect()
-        this.load().catch((error) => this.fail(error))
-      }
+      if (entries.some((e) => e.isIntersecting)) begin()
     }, { rootMargin: '200px' })
     near.observe(this)
+    // ROAMA 0762: preload="idle" loads (and compiles) the scene early in idle time after the page has loaded,
+    // while the visitor is still on the first screen - not when they scroll up to it (the ~2 s freeze).
+    if (this.getAttribute('preload') === 'idle') {
+      const idle = () => setTimeout(() => (globalThis.requestIdleCallback ? requestIdleCallback(begin, { timeout: 3000 }) : begin()), 800)
+      if (document.readyState === 'complete') idle()
+      else addEventListener('load', idle, { once: true })
+    }
   }
 
   disconnectedCallback() {

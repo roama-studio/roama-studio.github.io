@@ -292,3 +292,58 @@ export function scrubFor(attribute, smoothScroll) {
   if (attribute !== null && attribute !== undefined && attribute !== '') return Number(attribute)
   return smoothScroll ? true : 0.6
 }
+
+// TASK-0475 «exploded view»: the product's parts fly apart and come back together on scroll.
+// explode = {parts: [{node, offset: [x, y, z] (Blender, metres, from the part's own rest place), rotation?: [deg]}],
+//   start, peak, release, end (scroll 0..1), stagger (between parts, in parts' order), phone_travel (0..1)}.
+// Part i: at rest at start + i*stagger, fully out at peak + i*stagger, still out at release - i*stagger
+// (the last part out is the first back), at rest again at end - i*stagger. The page stays scrollable; the keys
+// are ordinary node keys, so sampleScroll eases them like any other. rest = {node: Blender position}.
+export const EXPLODE_DEFAULTS = { start: 0.12, peak: 0.42, release: 0.62, end: 0.9, stagger: 0.04, phone_travel: 0.6 }
+
+export function explodeProblems(explode) {
+  const e = { ...EXPLODE_DEFAULTS, ...(explode ?? {}) }
+  const parts = e.parts ?? []
+  const out = []
+  if (!parts.length) out.push('explode.parts is empty')
+  const last = Math.max(parts.length - 1, 0)
+  if (!(e.start >= 0 && e.start < e.peak && e.peak <= e.release && e.release < e.end && e.end <= 1)) {
+    out.push('explode needs 0 <= start < peak <= release < end <= 1')
+  }
+  if (e.peak + last * e.stagger > e.release - last * e.stagger) {
+    out.push('explode.stagger is too long: the last part would come back before it is fully out')
+  }
+  if (e.start + last * e.stagger >= e.peak || e.end - last * e.stagger <= e.release) {
+    out.push('explode.stagger is too long for the start/peak or release/end gap')
+  }
+  const names = new Set()
+  for (const p of parts) {
+    if (!p?.node) out.push('an explode part has no node')
+    else if (names.has(p.node)) out.push(`explode part ${p.node} is listed twice`)
+    names.add(p?.node)
+    if (!Array.isArray(p?.offset) || p.offset.length !== 3) out.push(`explode part ${p?.node} needs offset [x, y, z]`)
+  }
+  if (!(e.phone_travel > 0 && e.phone_travel <= 1)) out.push('explode.phone_travel must be in (0, 1]')
+  return out
+}
+
+export function explodeKeys(explode, rest, travel = 1) {
+  const e = { ...EXPLODE_DEFAULTS, ...(explode ?? {}) }
+  const keys = []
+  const round = (v) => Math.round(v * 1e6) / 1e6
+  ;(e.parts ?? []).forEach((part, i) => {
+    const home = rest?.[part.node]
+    if (!home) return
+    const out = home.map((v, axis) => round(v + part.offset[axis] * travel))
+    const spin = part.rotation ? part.rotation.map((d) => d * travel) : null
+    const atRest = { position: home.map(round), ...(spin ? { rotation: [0, 0, 0] } : {}) }
+    const apart = { position: out, ...(spin ? { rotation: spin } : {}) }
+    for (const [at, pose] of [[e.start + i * e.stagger, atRest], [e.peak + i * e.stagger, apart],
+      [e.release - i * e.stagger, apart], [e.end - i * e.stagger, atRest]]) {
+      keys.push({ at: round(at), nodes: { [part.node]: pose } })
+    }
+  })
+  return keys
+}
+
+export { fromThree }

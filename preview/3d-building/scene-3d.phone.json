@@ -1,514 +1,969 @@
 {
-  "name": "ROAMA round 4b: cutaway building with floors",
-  "models": {
-    "desktop": "models/desktop.glb",
-    "mobile": "models/mobile.glb"
-  },
-  "poster": "models/poster.webp",
-  "aspect": 1.6,
-  "frame": {
-    "width": 0.4519,
-    "height": 0.899
-  },
-  "phone_aspect": 0.8042,
-  "background": "#0B0907",
-  "camera": {
-    "position": [
-      8,
-      -59,
-      12.5
-    ],
-    "target": [
-      0,
-      0,
-      11.6
-    ],
-    "fov": 40
-  },
-  "scroll": {
-    "path": "smooth",
-    "keys": [
-      {
-        "at": 0,
-        "camera": {
-          "position": [
-            4,
-            -30,
-            11.5
-          ],
-          "target": [
-            0,
-            0,
-            11.2
-          ],
-          "fov": 40
-        }
-      },
-      {
-        "at": 0.00467,
-        "camera": {
-          "position": [
-            0.3,
-            -2.5,
-            1.5
-          ],
-          "target": [
-            0.3,
-            0.3,
-            1.45
-          ],
-          "fov": 36
-        }
-      },
-      {
-        "at": 0.02284,
-        "camera": {
-          "position": [
-            -0.2,
-            -2.45,
-            1.2
-          ],
-          "target": [
-            0.35,
-            0.3,
-            0.85
-          ],
-          "fov": 33
-        }
-      },
-      {
-        "at": 0.05331,
-        "camera": {
-          "position": [
-            0.15,
-            -2.45,
-            1.05
-          ],
-          "target": [
-            0.35,
-            0.2,
-            0.8
-          ],
-          "fov": 28
-        }
-      },
-      {
-        "at": 0.0829,
-        "camera": {
-          "position": [
-            0.3,
-            -2.5,
-            4.5
-          ],
-          "target": [
-            0.3,
-            0.3,
-            4.45
-          ],
-          "fov": 36
-        }
-      },
-      {
-        "at": 0.13119,
-        "camera": {
-          "position": [
-            -0.2,
-            -2.45,
-            4.2
-          ],
-          "target": [
-            0.35,
-            0.3,
-            3.85
-          ],
-          "fov": 33
-        }
-      },
-      {
-        "at": 0.18768,
-        "camera": {
-          "position": [
-            0.15,
-            -2.45,
-            4.05
-          ],
-          "target": [
-            0.35,
-            0.2,
-            3.8
-          ],
-          "fov": 28
-        }
-      },
-      {
-        "at": 0.23387,
-        "camera": {
-          "position": [
-            0.3,
-            -2.5,
-            7.5
-          ],
-          "target": [
-            0.3,
-            0.3,
-            7.45
-          ],
-          "fov": 36
-        }
-      },
-      {
-        "at": 0.30103,
-        "camera": {
-          "position": [
-            -0.2,
-            -2.45,
-            7.2
-          ],
-          "target": [
-            0.35,
-            0.3,
-            6.85
-          ],
-          "fov": 33
-        }
-      },
-      {
-        "at": 0.37227,
-        "camera": {
-          "position": [
-            0.15,
-            -2.45,
-            7.05
-          ],
-          "target": [
-            0.35,
-            0.2,
-            6.8
-          ],
-          "fov": 28
-        }
-      },
-      {
-        "at": 0.42674,
-        "camera": {
-          "position": [
-            0.3,
-            -2.5,
-            10.5
-          ],
-          "target": [
-            0.3,
-            0.3,
-            10.45
-          ],
-          "fov": 36
-        }
-      },
-      {
-        "at": 0.5015,
-        "camera": {
-          "position": [
-            -0.2,
-            -2.45,
-            10.2
-          ],
-          "target": [
-            0.35,
-            0.3,
-            9.85
-          ],
-          "fov": 33
-        }
-      },
-      {
-        "at": 0.57624,
-        "camera": {
-          "position": [
-            0.15,
-            -2.45,
-            10.05
-          ],
-          "target": [
-            0.35,
-            0.2,
-            9.8
-          ],
-          "fov": 28
-        }
-      },
-      {
-        "at": 0.63064,
-        "camera": {
-          "position": [
-            0.3,
-            -2.5,
-            13.5
-          ],
-          "target": [
-            0.3,
-            0.3,
-            13.45
-          ],
-          "fov": 36
-        }
-      },
-      {
-        "at": 0.70174,
-        "camera": {
-          "position": [
-            -0.2,
-            -2.45,
-            13.2
-          ],
-          "target": [
-            0.35,
-            0.3,
-            12.85
-          ],
-          "fov": 33
-        }
-      },
-      {
-        "at": 0.76871,
-        "camera": {
-          "position": [
-            0.15,
-            -2.45,
-            13.05
-          ],
-          "target": [
-            0.35,
-            0.2,
-            12.8
-          ],
-          "fov": 28
-        }
-      },
-      {
-        "at": 0.81472,
-        "camera": {
-          "position": [
-            0.3,
-            -2.5,
-            16.5
-          ],
-          "target": [
-            0.3,
-            0.3,
-            16.45
-          ],
-          "fov": 36
-        }
-      },
-      {
-        "at": 0.87091,
-        "camera": {
-          "position": [
-            -0.2,
-            -2.45,
-            16.2
-          ],
-          "target": [
-            0.35,
-            0.3,
-            15.85
-          ],
-          "fov": 33
-        }
-      },
-      {
-        "at": 0.91884,
-        "camera": {
-          "position": [
-            0.15,
-            -2.45,
-            16.05
-          ],
-          "target": [
-            0.35,
-            0.2,
-            15.8
-          ],
-          "fov": 28
-        }
-      },
-      {
-        "at": 0.94812,
-        "camera": {
-          "position": [
-            0.3,
-            -2.5,
-            19.5
-          ],
-          "target": [
-            0.3,
-            0.3,
-            19.45
-          ],
-          "fov": 36
-        }
-      },
-      {
-        "at": 0.97813,
-        "camera": {
-          "position": [
-            -0.6,
-            -1.9,
-            19.75
-          ],
-          "target": [
-            0.3,
-            2.0,
-            19.5
-          ],
-          "fov": 50
-        }
-      },
-      {
-        "at": 1,
-        "camera": {
-          "position": [
-            -0.1,
-            -1.0,
-            19.7
-          ],
-          "target": [
-            0.4,
-            2.2,
-            19.55
-          ],
-          "fov": 50
-        }
-      }
-    ]
-  },
-  "lighting": {
-    "preset": "dark_cinematic",
-    "ambient": 0.06,
-    "exposure": 0.9,
-    "lights": [
-      {
-        "name": "key",
-        "position": [
-          -71.525441,
-          -35.285897,
-          1.89972
-        ],
-        "color": "#fff1de",
-        "intensity": 4.38616,
-        "shadow": false
-      },
-      {
-        "name": "rim",
-        "position": [
-          48.212674,
-          -17.896858,
-          77.50908
-        ],
-        "color": "#cfdcff",
-        "intensity": 9.259924,
-        "shadow": true
-      },
-      {
-        "name": "glint",
-        "position": [
-          36.191262,
-          -41.796152,
-          -48.201745
-        ],
-        "color": "#ffffff",
-        "intensity": 1.341536,
-        "shadow": false
-      }
-    ],
-    "tone": "neutral",
-    "environment": {
-      "file": "models/environment.hdr",
-      "intensity": 0.35,
-      "rotation": 30,
-      "name": "studio"
-    }
-  },
-  "glow": [
-    {
-      "color": "#FFC83D",
-      "power": 10,
-      "flicker": 0,
-      "node": "lamp_ada",
-      "intensity": 0.63662
-    },
-    {
-      "color": "#FFC83D",
-      "power": 10,
-      "flicker": 0,
-      "node": "lamp_maya",
-      "intensity": 0.63662
-    },
-    {
-      "color": "#FFC83D",
-      "power": 9,
-      "flicker": 0,
-      "node": "lamp_iris",
-      "intensity": 0.572958
-    },
-    {
-      "color": "#FFC83D",
-      "power": 11,
-      "flicker": 0,
-      "node": "lamp_max",
-      "intensity": 0.700282
-    },
-    {
-      "color": "#b9cdf0",
-      "power": 55,
-      "flicker": 0.05,
-      "node": "screens_max",
-      "intensity": 3.501409
-    },
-    {
-      "color": "#FFC83D",
-      "power": 10,
-      "flicker": 0,
-      "node": "lamp_quinn",
-      "intensity": 0.63662
-    },
-    {
-      "color": "#FFC83D",
-      "power": 8,
-      "flicker": 0,
-      "node": "lamp_theo",
-      "intensity": 0.509296
-    },
-    {
-      "color": "#ffd6a0",
-      "power": 16,
-      "flicker": 0,
-      "node": "studio_theo",
-      "intensity": 1.018592
-    },
-    {
-      "color": "#FFC83D",
-      "power": 30,
-      "flicker": 0,
-      "node": "lamp_owner",
-      "intensity": 1.909859
-    }
+ "name": "TASK-0762: tower with 8 floors and beats",
+ "models": {
+  "desktop": "models/desktop.glb",
+  "mobile": "models/mobile.glb"
+ },
+ "poster": "models/poster.webp",
+ "aspect": 1.6,
+ "frame": {
+  "width": 0.4081,
+  "height": 0.903
+ },
+ "phone_aspect": 0.8,
+ "background": "#0B0907",
+ "camera": {
+  "position": [
+   9,
+   -66,
+   14
   ],
-  "steam": [],
-  "ripple": [],
-  "water": [],
-  "contact": {
-    "file": "models/contact.png",
-    "center": [
-      0.0,
-      0.0,
-      0.0
+  "target": [
+   0,
+   0,
+   13.1
+  ],
+  "fov": 40
+ },
+ "scroll": {
+  "path": "smooth",
+  "keys": [
+   {
+    "at": 0,
+    "camera": {
+     "position": [
+      3.8,
+      -28,
+      13.2
+     ],
+     "target": [
+      0.4,
+      0,
+      13.1
+     ],
+     "fov": 40
+    }
+   },
+   {
+    "at": 0.007108,
+    "camera": {
+     "position": [
+      0.3,
+      -2.9,
+      1.75
+     ],
+     "target": [
+      0.3,
+      0.3,
+      1.6
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.033638,
+    "camera": {
+     "position": [
+      -0.51,
+      -2.4,
+      1.82
+     ],
+     "target": [
+      0.25,
+      0.1,
+      0.875
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.048599,
+    "camera": {
+     "position": [
+      0.68,
+      -2.4,
+      1.82
+     ],
+     "target": [
+      -1.1,
+      2.25,
+      1.535
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.065957,
+    "camera": {
+     "position": [
+      -0.765,
+      -1.9,
+      1.82
+     ],
+     "target": [
+      1.75,
+      1.2,
+      0.882
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.08556,
+    "camera": {
+     "position": [
+      0.51,
+      -1.8,
+      1.42
+     ],
+     "target": [
+      0.25,
+      0.1,
+      0.904
+     ],
+     "fov": 34
+    }
+   },
+   {
+    "at": 0.097811,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      1.87
+     ],
+     "target": [
+      0.3,
+      0.3,
+      1.77
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.108529,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      4.47
+     ],
+     "target": [
+      0.3,
+      0.3,
+      4.37
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.121214,
+    "camera": {
+     "position": [
+      -0.51,
+      -2.4,
+      4.82
+     ],
+     "target": [
+      0.25,
+      0.1,
+      3.875
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.145939,
+    "camera": {
+     "position": [
+      0.17,
+      -2.4,
+      4.82
+     ],
+     "target": [
+      2.98,
+      -0.6,
+      4.749
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.172359,
+    "camera": {
+     "position": [
+      0.807,
+      -2.2,
+      4.82
+     ],
+     "target": [
+      -1.0,
+      2.25,
+      4.545
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.200323,
+    "camera": {
+     "position": [
+      -0.17,
+      -2.4,
+      4.67
+     ],
+     "target": [
+      -1.7,
+      -0.6,
+      3.821
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.21707,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      4.87
+     ],
+     "target": [
+      0.3,
+      0.3,
+      4.77
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.231358,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      7.47
+     ],
+     "target": [
+      0.3,
+      0.3,
+      7.37
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.247892,
+    "camera": {
+     "position": [
+      -0.51,
+      -2.4,
+      7.82
+     ],
+     "target": [
+      0.25,
+      0.1,
+      6.875
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.279151,
+    "camera": {
+     "position": [
+      0.807,
+      -2.4,
+      7.82
+     ],
+     "target": [
+      -1.25,
+      2.25,
+      7.529
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.311405,
+    "camera": {
+     "position": [
+      -0.595,
+      -1.7,
+      7.92
+     ],
+     "target": [
+      1.65,
+      1.2,
+      6.898
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.344498,
+    "camera": {
+     "position": [
+      0.807,
+      -1.6,
+      7.67
+     ],
+     "target": [
+      0.25,
+      0.1,
+      6.923
+     ],
+     "fov": 34
+    }
+   },
+   {
+    "at": 0.363882,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      7.87
+     ],
+     "target": [
+      0.3,
+      0.3,
+      7.77
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.380189,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      10.47
+     ],
+     "target": [
+      0.3,
+      0.3,
+      10.37
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.398816,
+    "camera": {
+     "position": [
+      -0.51,
+      -2.4,
+      10.82
+     ],
+     "target": [
+      0.25,
+      0.1,
+      9.875
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.433381,
+    "camera": {
+     "position": [
+      0.425,
+      -2.3,
+      10.72
+     ],
+     "target": [
+      -2.2,
+      1.5,
+      10.103
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.468237,
+    "camera": {
+     "position": [
+      -0.51,
+      -0.95,
+      10.57
+     ],
+     "target": [
+      -2.25,
+      1.35,
+      10.254
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.503232,
+    "camera": {
+     "position": [
+      -0.85,
+      -1.7,
+      10.47
+     ],
+     "target": [
+      0.25,
+      0.1,
+      9.913
+     ],
+     "fov": 34
+    }
+   },
+   {
+    "at": 0.538213,
+    "camera": {
+     "position": [
+      0.51,
+      -1.1,
+      10.82
+     ],
+     "target": [
+      1.6,
+      1.4,
+      10.208
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.573027,
+    "camera": {
+     "position": [
+      0.765,
+      -2.1,
+      10.52
+     ],
+     "target": [
+      0.25,
+      0.1,
+      9.883
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.592944,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      10.87
+     ],
+     "target": [
+      0.3,
+      0.3,
+      10.77
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.60944,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      13.47
+     ],
+     "target": [
+      0.3,
+      0.3,
+      13.37
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.628001,
+    "camera": {
+     "position": [
+      -0.51,
+      -2.4,
+      13.82
+     ],
+     "target": [
+      0.25,
+      0.1,
+      12.875
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.661668,
+    "camera": {
+     "position": [
+      0.85,
+      -2.4,
+      13.82
+     ],
+     "target": [
+      -1.6,
+      2.25,
+      13.469
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.694618,
+    "camera": {
+     "position": [
+      0.297,
+      -1.85,
+      13.72
+     ],
+     "target": [
+      0.25,
+      0.1,
+      12.944
+     ],
+     "fov": 34
+    }
+   },
+   {
+    "at": 0.713212,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      13.87
+     ],
+     "target": [
+      0.3,
+      0.3,
+      13.77
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.728467,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      16.47
+     ],
+     "target": [
+      0.3,
+      0.3,
+      16.37
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.745467,
+    "camera": {
+     "position": [
+      0.85,
+      -2.4,
+      16.82
+     ],
+     "target": [
+      0.25,
+      0.1,
+      15.877
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.775841,
+    "camera": {
+     "position": [
+      1.02,
+      -1.6,
+      16.72
+     ],
+     "target": [
+      -1.05,
+      0.85,
+      15.722
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.804949,
+    "camera": {
+     "position": [
+      -0.297,
+      -1.0,
+      16.47
+     ],
+     "target": [
+      -1.05,
+      0.85,
+      15.795
+     ],
+     "fov": 34
+    }
+   },
+   {
+    "at": 0.832639,
+    "camera": {
+     "position": [
+      -1.19,
+      -1.4,
+      16.62
+     ],
+     "target": [
+      0.25,
+      0.1,
+      15.941
+     ],
+     "fov": 34
+    }
+   },
+   {
+    "at": 0.858758,
+    "camera": {
+     "position": [
+      -0.765,
+      -2.0,
+      16.82
+     ],
+     "target": [
+      1.5,
+      1.3,
+      15.933
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.87303,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      16.87
+     ],
+     "target": [
+      0.3,
+      0.3,
+      16.77
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.884466,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      19.47
+     ],
+     "target": [
+      0.3,
+      0.3,
+      19.37
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.8969,
+    "camera": {
+     "position": [
+      -0.51,
+      -2.4,
+      19.82
+     ],
+     "target": [
+      0.25,
+      0.1,
+      18.875
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.918221,
+    "camera": {
+     "position": [
+      0.17,
+      -2.2,
+      19.82
+     ],
+     "target": [
+      2.8,
+      0.45,
+      19.506
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.937421,
+    "camera": {
+     "position": [
+      0.807,
+      -2.4,
+      19.82
+     ],
+     "target": [
+      -1.15,
+      2.25,
+      19.582
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.954348,
+    "camera": {
+     "position": [
+      -0.255,
+      -1.3,
+      19.77
+     ],
+     "target": [
+      -1.55,
+      0.9,
+      19.014
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.96885,
+    "camera": {
+     "position": [
+      -1.02,
+      -1.7,
+      19.47
+     ],
+     "target": [
+      0.35,
+      0.15,
+      18.902
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.976042,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      19.87
+     ],
+     "target": [
+      0.3,
+      0.3,
+      19.77
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.981362,
+    "camera": {
+     "position": [
+      0.3,
+      -2.95,
+      22.47
+     ],
+     "target": [
+      0.3,
+      0.3,
+      22.37
+     ],
+     "fov": 36
+    }
+   },
+   {
+    "at": 0.986626,
+    "camera": {
+     "position": [
+      -0.595,
+      -2.4,
+      22.85
+     ],
+     "target": [
+      0.3,
+      0.9,
+      21.964
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 0.994107,
+    "camera": {
+     "position": [
+      0.51,
+      -2.25,
+      22.82
+     ],
+     "target": [
+      0.3,
+      1.2,
+      22.066
+     ],
+     "fov": 29
+    }
+   },
+   {
+    "at": 1,
+    "camera": {
+     "position": [
+      0.51,
+      -1.7,
+      22.87
+     ],
+     "target": [
+      0.3,
+      1.4,
+      22.084
+     ],
+     "fov": 29
+    }
+   }
+  ]
+ },
+ "lighting": {
+  "preset": "dark_cinematic",
+  "ambient": 0.06,
+  "exposure": 0.9,
+  "lights": [
+   {
+    "name": "key",
+    "position": [
+     -71.500836,
+     -35.32454,
+     3.359056
     ],
-    "size": 74.39799690246583
-  },
-  "post": {
-    "bloom": 0.03,
-    "grain": 0.035,
-    "vignette": 0.25
+    "color": "#fff1de",
+    "intensity": 4.38616,
+    "shadow": false
+   },
+   {
+    "name": "rim",
+    "position": [
+     48.24048,
+     -17.965118,
+     78.970151
+    ],
+    "color": "#cfdcff",
+    "intensity": 9.259924,
+    "shadow": true
+   },
+   {
+    "name": "glint",
+    "position": [
+     36.209897,
+     -41.673647,
+     -46.775913
+    ],
+    "color": "#ffffff",
+    "intensity": 1.341536,
+    "shadow": false
+   }
+  ],
+  "tone": "neutral",
+  "environment": {
+   "file": "models/environment.hdr",
+   "intensity": 0.35,
+   "rotation": 30,
+   "name": "studio"
   }
+ },
+ "glow": [
+  {
+   "color": "#FFC83D",
+   "power": 10,
+   "flicker": 0,
+   "node": "lamp_ada",
+   "intensity": 0.63662
+  },
+  {
+   "color": "#FFC83D",
+   "power": 10,
+   "flicker": 0,
+   "node": "lamp_maya",
+   "intensity": 0.63662
+  },
+  {
+   "color": "#FFC83D",
+   "power": 9,
+   "flicker": 0,
+   "node": "lamp_iris",
+   "intensity": 0.572958
+  },
+  {
+   "color": "#FFC83D",
+   "power": 11,
+   "flicker": 0,
+   "node": "lamp_max",
+   "intensity": 0.700282
+  },
+  {
+   "color": "#b9cdf0",
+   "power": 55,
+   "flicker": 0,
+   "node": "screens_max",
+   "intensity": 3.501409
+  },
+  {
+   "color": "#FFC83D",
+   "power": 10,
+   "flicker": 0,
+   "node": "lamp_quinn",
+   "intensity": 0.63662
+  },
+  {
+   "color": "#FFC83D",
+   "power": 8,
+   "flicker": 0,
+   "node": "lamp_theo",
+   "intensity": 0.509296
+  },
+  {
+   "color": "#ffd6a0",
+   "power": 16,
+   "flicker": 0,
+   "node": "studio_theo",
+   "intensity": 1.018592
+  },
+  {
+   "color": "#FFC83D",
+   "power": 10,
+   "flicker": 0,
+   "node": "lamp_atlas",
+   "intensity": 0.63662
+  },
+  {
+   "color": "#FFC83D",
+   "power": 30,
+   "flicker": 0,
+   "node": "lamp_owner",
+   "intensity": 1.909859
+  }
+ ],
+ "steam": [],
+ "ripple": [],
+ "water": [],
+ "contact": {
+  "file": "models/contact.png",
+  "center": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": 75.29799690246583
+ },
+ "post": {
+  "bloom": 0.03,
+  "grain": 0.035,
+  "vignette": 0.25
+ }
 }
