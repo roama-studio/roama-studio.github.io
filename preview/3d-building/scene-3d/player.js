@@ -652,6 +652,8 @@ export async function createPlayer(lib, host, manifest, options) {
 
   return {
     mode,
+    // ROAMA 0794: live add-ons (site/scripts/components/tower-atlas.js) reach the scene through this
+    live: { lib, scene, camera, model, renderer, glowing, get progress() { return progress } },
     modelUrl: options.modelUrl,
     canvas,
     get progress() { return progress },
