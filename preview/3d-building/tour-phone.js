@@ -19,15 +19,25 @@
 //             data-phone-src="/3d/scene-3d.phone.json" data-phone-frames="/3d/frames/" data-frame-count="48"
 //             data-poster="/3d/models/poster.webp"></scene-3d>
 // data-phone-mode="live" keeps the live 3D (phone path) on phones too.
+//   weak computers (TASK-0794 round 4, the Owner's work PC): where scene-3d.js would give the tower only its poster
+//     (no WebGL 2, WebGL drawn by the CPU, or the player gave up on this machine earlier in the visit), the tour gets
+//     these frames instead - the stepped tower with its cards and floors panel, not the flat list of rooms. The frame
+//     stands in the free band right of the card. The reason is stamped on the frame box (data-lite) for a check on that
+//     PC; ?lite3d forces it (QA). Reduced motion and Save-Data keep the still as before. A GPU that only turns out too
+//     slow on this visit (the player steps down its tiers and gives up: 'scene-slow') swaps to the frames there and
+//     then, at the same scroll place (data-lite="slow-now"), instead of a still poster for the rest of the tour.
 const PHONE = '(max-width: 767px)'
 const PORTRAIT = '(max-width: 1024px) and (orientation: portrait)'
 const FRAME_W = 720
 const FRAME_H = 1280
+// the frame strip's sides melt into the stage colour (weak computers; tower-loop.js lays the video over it the same way)
+const SOFT = 'mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent)'
 
-function frames(el) {
+function frames(el, lite = '') {
   const base = new URL(el.dataset.phoneFrames, document.baseURI)
   const count = Number(el.dataset.frameCount || 48)
-  const length = Number(el.dataset.phoneLength || el.getAttribute('length') || 200) // TASK-0788: data-phone-length
+  // TASK-0788: data-phone-length; a weak computer keeps the computer's scroll length (the wheel steps by it)
+  const length = Number((lite ? el.getAttribute('length') : el.dataset.phoneLength) || el.getAttribute('length') || 200)
   const poster = el.dataset.poster ? new URL(el.dataset.poster, document.baseURI).href : new URL('../models/poster.webp', base).href
   const label = el.getAttribute('label') || ''
   // TASK-0794: data-frame-hold="5 8,..." - the frames of a living floor's beats show its first one (the home's camera
@@ -44,8 +54,14 @@ function frames(el) {
   const canvas = document.createElement('canvas')
   canvas.width = FRAME_W
   canvas.height = FRAME_H
-  canvas.style.cssText = 'display:block;width:100%;height:100%;object-fit:contain'
-  const texts = [...el.children]
+  canvas.style.cssText = lite
+    // a landscape screen: the portrait frame at full height, in the middle of the free band between the card and the
+    // floors panel (the card ends at ~41 %, the panel starts at ~78 %), the stage colour round it
+    ? `display:block;position:absolute;top:0;height:100%;width:auto;aspect-ratio:${FRAME_W}/${FRAME_H};left:59.5%;transform:translateX(-50%);${SOFT}`
+    : 'display:block;width:100%;height:100%;object-fit:contain'
+  if (lite) box.dataset.lite = lite
+  // the texts over the scene; once scene-3d.js ran (a swap mid-visit) its own poster, canvas and parts stay behind
+  const texts = [...el.children].filter((c) => !el.dataset.state || c.matches('[data-at]'))
   for (const t of texts) stage.appendChild(t)
 
   if (still) {
@@ -63,7 +79,7 @@ function frames(el) {
   // iOS (TASK-0455 r4b, the Owner's iPhone 15: jerky, jumping, flickering): sizes in svh so the address bar showing or
   // hiding does not change them; the scroll span is measured from the box itself, never from innerHeight.
   box.style.cssText = `position:relative;height:calc(100svh + ${length}svh)`
-  stage.style.cssText = 'position:sticky;top:0;height:100svh;overflow:hidden'
+  stage.style.cssText = `position:sticky;top:0;height:100svh;overflow:hidden${lite ? ';background:var(--roama-color-stage, #14110e)' : ''}`
   stage.prepend(canvas)
   box.appendChild(stage)
   el.replaceWith(box)
@@ -150,10 +166,45 @@ function frames(el) {
   update()
 }
 
+// TASK-0794 round 4: why scene-3d.js would show a computer only the poster (its gates, the same tests), or ''
+function weak() {
+  if (/[?&]lite3d/.test(location.search)) return 'forced'
+  if (/[?&](tier3d=|probe3d)/.test(location.search)) return ''
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData === true) return ''
+  try { if (Number(sessionStorage.getItem('roama-3d-tier')) >= 4) return 'slow-before' } catch { /* storage off */ }
+  try {
+    const gl = document.createElement('canvas').getContext('webgl2')
+    if (!gl) return 'no-webgl2'
+    const info = gl.getExtension('WEBGL_debug_renderer_info')
+    const name = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : ''
+    gl.getExtension('WEBGL_lose_context')?.loseContext()
+    if (/swiftshader|llvmpipe|softpipe|basic render/i.test(name)) return 'software-gl'
+  } catch { return 'no-webgl2' }
+  return ''
+}
+
 const phone = matchMedia(PHONE).matches
 if (phone || matchMedia(PORTRAIT).matches) {
   for (const el of document.querySelectorAll('scene-3d[mode="scroll"]')) {
     if (phone && el.dataset.phoneFrames && el.dataset.phoneMode !== 'live') frames(el)
     else if (el.dataset.phoneSrc) el.setAttribute('src', el.dataset.phoneSrc)
+  }
+} else {
+  const towers = [...document.querySelectorAll('[data-tower] scene-3d[mode="scroll"][data-phone-frames]')]
+  const why = towers.length ? weak() : ''
+  if (why) for (const el of towers) frames(el, why)
+  else {
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData === true
+    // the swap must not move the visitor: the 3D's pin is undone as it leaves (scene-3d.js), and the browser's scroll
+    // anchoring can throw the page far down - the scroll place is put back once that has settled
+    const swap = (el) => {
+      if (!el.isConnected) return
+      const y = scrollY
+      frames(el, 'slow-now')
+      const back = () => { if (Math.abs(scrollY - y) > 1) { if (window.lenis) window.lenis.scrollTo(y, { immediate: true, force: true }); else scrollTo(0, y) } }
+      queueMicrotask(() => queueMicrotask(back))
+      requestAnimationFrame(() => { back(); setTimeout(back, 120) })
+    }
+    if (!still) for (const el of towers) el.addEventListener('scene-slow', () => swap(el), { once: true })
   }
 }
