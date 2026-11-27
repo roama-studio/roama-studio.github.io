@@ -1,0 +1,16 @@
+{
+  "name": "ROAMA — веб-студія",
+  "short_name": "ROAMA",
+  "description": "ROAMA робить сайти, інтернет-магазини, дизайн і 3D для малого бізнесу в Україні та Німеччині.",
+  "lang": "uk",
+  "start_url": "./",
+  "scope": "./",
+  "display": "browser",
+  "background_color": "#f7f2e8",
+  "theme_color": "#f7f2e8",
+  "icons": [
+    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "favicon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
