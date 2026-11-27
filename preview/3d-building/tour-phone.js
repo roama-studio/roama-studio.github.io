@@ -30,6 +30,9 @@ function frames(el) {
   const length = Number(el.dataset.phoneLength || el.getAttribute('length') || 200) // TASK-0788: data-phone-length
   const poster = el.dataset.poster ? new URL(el.dataset.poster, document.baseURI).href : new URL('../models/poster.webp', base).href
   const label = el.getAttribute('label') || ''
+  // TASK-0794: data-frame-hold="5 8,..." - the frames of a living floor's beats show its first one (the home's camera
+  // is held there, and the floor's loop video starts from that very picture)
+  const hold = (el.dataset.frameHold || '').split(',').map((r) => r.trim().split(/\s+/).map(Number)).filter((r) => r.length === 2 && r.every(Number.isFinite))
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData === true
 
   const box = document.createElement('div')
@@ -106,6 +109,7 @@ function frames(el) {
     const span = Math.max(1, box.offsetHeight - stage.offsetHeight)
     const p = Math.min(Math.max(-r.top / span, 0), 1)
     want = Math.round(p * (count - 1))
+    for (const [a, b] of hold) if (want >= a && want <= b) want = a
     draw()
     const step = Math.round(p * 1000)
     if (step === last) return
