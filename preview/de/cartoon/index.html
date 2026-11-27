@@ -11,7 +11,7 @@
      Organization JSON-LD. params: lang (uk|de). Do not edit by hand: change gen-pages.mjs and run it again. -->
 
 
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5Y8zxTXkgvW6eF5IS7QeR19qWU7MpHLLTX6fMK/ujvA=' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' blob:; connect-src 'self' data: blob: https://script.google.com/macros/s/AKfycby4-nk6XY_WYrpFQF132xXg8ZTZgDhaIRImFsZDv5l7TcNY8JD6doiC_CBxFaFuSqYLwA/exec https://script.googleusercontent.com ; worker-src 'self' blob:; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5Y8zxTXkgvW6eF5IS7QeR19qWU7MpHLLTX6fMK/ujvA=' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' blob:; connect-src 'self' data: blob: https://script.google.com/macros/s/AKfycby4-nk6XY_WYrpFQF132xXg8ZTZgDhaIRImFsZDv5l7TcNY8JD6doiC_CBxFaFuSqYLwA/exec https://script.googleusercontent.com https://script.google.com/macros/s/AKfycbxCGBc5rE-G_0EWjzA84rl2YJIXmav2LnTufz-kwdvzTjqfcH8b6HbFMaCA51vz99go/exec; worker-src 'self' blob:; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="roama-visits" content="https://script.google.com/macros/s/AKfycby4-nk6XY_WYrpFQF132xXg8ZTZgDhaIRImFsZDv5l7TcNY8JD6doiC_CBxFaFuSqYLwA/exec" data-host="roama-studio.github.io">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://roama-studio.github.io/preview/#studio","name":"ROAMA","url":"https://roama-studio.github.io/preview/de/","logo":"https://roama-studio.github.io/preview/social/og-1200x630-light.png","email":"roama.studio@gmail.com","description":"ROAMA baut Websites, Onlineshops, Design und 3D für kleine Unternehmen in der Ukraine und in Deutschland. Jeden wichtigen Schritt geben Sie frei.","sameAs":["https://youtube.com/@roama.studio","https://tiktok.com/@roama.studio","https://instagram.com/roama.studio","https://threads.net/@roama.studio","https://facebook.com/roama.studio","https://github.com/roama-studio"],"areaServed":[{"@type":"Country","name":"Ukraine"},{"@type":"Country","name":"Germany"}]}</script>
@@ -36,8 +36,8 @@
 <meta name="theme-color" content="#f7f2e8">
 <!-- Round 4 page transition: came here through the curtain → it lifts away (CSS), before the first paint. -->
 <script>try{if(sessionStorage.getItem('roama-curtain')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-entering');sessionStorage.removeItem('roama-curtain')}catch(e){}</script>
-  <script type="module" crossorigin src="../../assets/roama-BWcy6FC9.js"></script>
-  <link rel="stylesheet" crossorigin href="../../assets/roama-BjIFGfop.css">
+  <script type="module" crossorigin src="../../assets/roama-CvwSz-8G.js"></script>
+  <link rel="stylesheet" crossorigin href="../../assets/roama-nQ4PpGM6.css">
   <link rel="preload" href="../../assets/Onest-Variable-C_399t6n.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../assets/Unbounded-Variable-I12xPPHz.woff2" as="font" type="font/woff2" crossorigin>
 </head>
@@ -129,14 +129,56 @@
       </ul>
     </section>
     <!-- params: lang (uk|de), heading, body (texts of the page's contact section, site_texts word for word), id (unique per page, default "contact"), tag (h2; h1 on the contact page), order (uk|de: a «Замовити» button that opens the order dialog, the contact page only) -->
-<!-- roama.config.mjs → features.contactForm: false = the e-mail block, true = the form (endpoint = features.contactEndpoint) -->
+<!-- roama.config.mjs → features.contactForm: false = the e-mail block, true = the form (endpoint = features.contactEndpoint).
+     TASK-0807 stage 2b: both come from tools/lead_demo/instances/roama-site/deploy.json; scripts/components/lead-send.js
+     sends (our office Telegram + the «Заявки» sheet); the button stays disabled until the script runs. -->
 <section class="contact-block roama-container" id="contact" aria-labelledby="contact-title">
   <p class="contact-block__kicker" aria-hidden="true">roama.studio</p>
   <h2 class="contact-block__title" id="contact-title">Gefällt Ihnen die Serie? Schreiben Sie</h2>
   <p class="contact-block__body">Wir antworten unter roama.studio@gmail.com – zur Serie wie auch zu einer Website für Sie.</p>
 
-  <a class="contact-block__mail" href="mailto:roama.studio@gmail.com"><span class="contact-block__mail-text">roama.studio<wbr>@gmail.com</span><span class="contact-block__mail-arrow" aria-hidden="true">→</span></a>
-  <!-- params: lang (uk|de), contact (yes = also the e-mail and /links/ icons, used in the footer). Round 4b: our own
+
+
+
+
+
+  <div class="contact-form" data-contact-form data-endpoint="https://script.google.com/macros/s/AKfycbxCGBc5rE-G_0EWjzA84rl2YJIXmav2LnTufz-kwdvzTjqfcH8b6HbFMaCA51vz99go/exec" data-lead-errors="{&quot;busy&quot;: &quot;Gerade kommen zu viele Anfragen an. Bitte versuchen Sie es in ein paar Minuten erneut.&quot;, &quot;too_long&quot;: &quot;Der Text ist zu lang. Bitte kürzen Sie ihn.&quot;, &quot;required&quot;: &quot;Bitte füllen Sie die Pflichtfelder aus.&quot;, &quot;contact&quot;: &quot;Bitte eine gültige E-Mail-Adresse, z. B. name@beispiel.de.&quot;, &quot;early&quot;: &quot;Einen Moment, dann bitte noch einmal senden.&quot;, &quot;token&quot;: &quot;Bitte laden Sie die Seite neu und senden Sie erneut.&quot;}">
+    <form class="roama-form contact-form__form" method="post" novalidate data-roama-form>
+      <div class="roama-field">
+        <label for="contact-name">Name</label>
+        <input id="contact-name" name="name" autocomplete="name" required minlength="2" maxlength="100" data-roama-form-message-value-missing="Bitte geben Sie Ihren Namen ein." data-roama-form-message-too-short="Bitte mindestens 2 Zeichen.">
+      </div>
+      <div class="roama-field">
+        <label for="contact-email">E-Mail</label>
+        <input id="contact-email" name="contact" type="email" autocomplete="email" required maxlength="200" data-lead-contact-message="Bitte eine gültige E-Mail-Adresse, z. B. name@beispiel.de." data-roama-form-message-value-missing="Bitte geben Sie Ihre E-Mail-Adresse ein." data-roama-form-message-type-mismatch="Bitte eine gültige E-Mail-Adresse, z. B. name@beispiel.de.">
+      </div>
+      <div class="roama-field contact-form__wide">
+        <label for="contact-need">Was brauchen Sie?</label>
+        <textarea id="contact-need" name="message" rows="4" required minlength="10" maxlength="2000" data-roama-autosize data-roama-form-message-value-missing="Bitte beschreiben Sie kurz Ihr Anliegen." data-roama-form-message-too-short="Bitte mindestens 10 Zeichen."></textarea>
+      </div>
+      <div class="roama-field contact-form__wide">
+        <label for="contact-site">Ihre Website <span class="contact-form__optional">(optional)</span></label>
+        <input id="contact-site" name="website" inputmode="url" autocomplete="url" maxlength="300">
+      </div>
+      <div class="form-trap" aria-hidden="true"><label for="contact-fax">Fax</label><input id="contact-fax" name="fax" type="text" tabindex="-1" autocomplete="off" maxlength="100"></div>
+      <div class="roama-check contact-form__wide">
+        <input id="contact-consent" name="consent" type="checkbox" required data-roama-form-message-value-missing="Ihre Einwilligung ist nötig, damit wir antworten können.">
+        <label for="contact-consent">Ich stimme der <a href="/preview/de/privacy.html">Datenschutzerklärung</a> zu</label>
+      </div>
+      <div class="contact-form__actions contact-form__wide">
+        <button class="button button--accent contact-form__submit" type="submit" disabled data-label-idle="Senden" data-label-busy="Wird gesendet …">Senden</button>
+        <p class="contact-form__status" role="status" aria-live="polite" data-contact-status></p>
+      </div>
+    </form>
+    <div class="contact-form__done" data-contact-done tabindex="-1" hidden>
+      <p class="contact-form__done-title">Danke, Ihre Nachricht ist da.</p>
+      <p>Wir antworten an die angegebene E-Mail-Adresse.</p>
+      <button class="button contact-form__again" type="button" data-contact-again>Noch eine Nachricht</button>
+    </div>
+    <template data-contact-error><span>Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder schreiben Sie an <a href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a>.</span></template>
+    <noscript><p class="contact-form__noscript">Ohne JavaScript wird das Formular nicht gesendet: Schreiben Sie uns an <a href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a>.</p></noscript>
+    <p class="contact-form__reach">Oder schreiben Sie uns direkt: <a href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a></p>
+    <!-- params: lang (uk|de), contact (yes = also the e-mail and /links/ icons, used in the footer). Round 4b: our own
      sprite icons (site/assets/icons, tools/icons-r4b.mjs), the name for screen readers in the page's language,
      44 px targets, amber only on hover/focus (_studio.scss .social). -->
 
@@ -150,8 +192,7 @@
 
 </ul>
 
-
-
+  </div>
 
 
 </section>
@@ -231,28 +272,27 @@
      of the service pages. params: lang (uk|de). Script: scripts/components/order-dialog.js, styles: components/_order.scss. -->
 
 
-<dialog class="order" id="order" data-roama-dialog data-order-dialog aria-labelledby="order-title" data-mail-text="{&quot;subject&quot;:&quot;Anfrage&quot;,&quot;service&quot;:&quot;Leistung&quot;,&quot;name&quot;:&quot;Name&quot;,&quot;contact&quot;:&quot;Kontakt&quot;,&quot;message&quot;:&quot;Anliegen&quot;,&quot;page&quot;:&quot;Seite&quot;}">
+<dialog class="order" id="order" data-roama-dialog data-order-dialog aria-labelledby="order-title">
   <div class="roama-dialog__header">
     <h2 class="roama-dialog__title order__title" id="order-title">Leistung anfragen</h2>
     <button class="roama-dialog__close order__close" type="button" data-roama-dialog-close aria-label="Schließen"></button>
   </div>
   <div class="roama-dialog__body order__body">
 
-    <p class="order__lead">Füllen Sie die Felder aus: Der Button öffnet Ihr E-Mail-Programm mit einer fertigen Nachricht an roama.studio@gmail.com.</p>
 
-
-    <form class="roama-form order__form" method="post" novalidate data-roama-form data-order-form data-endpoint="">
+    <p class="order__lead">Füllen Sie die Felder aus, wir antworten über den angegebenen Kontakt.</p>
+    <form class="roama-form order__form" method="post" novalidate data-roama-form data-order-form data-endpoint="https://script.google.com/macros/s/AKfycbxCGBc5rE-G_0EWjzA84rl2YJIXmav2LnTufz-kwdvzTjqfcH8b6HbFMaCA51vz99go/exec" data-lead-errors="{&quot;busy&quot;:&quot;Gerade kommen zu viele Anfragen an. Bitte versuchen Sie es in ein paar Minuten erneut.&quot;,&quot;too_long&quot;:&quot;Der Text ist zu lang. Bitte kürzen Sie ihn.&quot;,&quot;required&quot;:&quot;Bitte füllen Sie die Pflichtfelder aus.&quot;,&quot;contact&quot;:&quot;Bitte Telefon, E-Mail oder Telegram (@name) angeben.&quot;,&quot;early&quot;:&quot;Einen Moment, dann bitte noch einmal senden.&quot;,&quot;token&quot;:&quot;Bitte laden Sie die Seite neu und senden Sie erneut.&quot;}">
       <div class="roama-field">
         <label for="order-service">Leistung</label>
         <select id="order-service" name="service">
-        <option value="">Weiß ich noch nicht – beraten Sie mich</option>
-        <optgroup label="Anfragen und Vertrieb"><option value="order-bot">Telegram-Bot für Bestellungen</option><option value="lead-forms">Anfragen in Telegram und Tabelle</option></optgroup>
-        <optgroup label="Projekte"><option value="complex">Komplettlösung</option><option value="support">Website-Betreuung</option></optgroup>
-        <optgroup label="Design"><option value="redesign">Website-Redesign</option><option value="logo">Logo und Logo-Set</option><option value="graphics">Grafik für Unternehmen</option></optgroup>
-        <optgroup label="Entwicklung"><option value="landing">Landingpage</option><option value="multipage">Mehrseitige Website</option><option value="wordpress">WordPress-Website mit Admin-Bereich</option><option value="shop">Online-Shop</option><option value="web-app">Webanwendung nach Maß</option><option value="edits">Anpassungen an Ihrer Website</option></optgroup>
-        <optgroup label="Qualitätsprüfung"><option value="content-safety">Schutz vor Ausfällen</option><option value="analytics">Analyse und Cookies</option></optgroup>
-        <optgroup label="3D und Video"><option value="3d-models">3D-Modelle, Renderings, Maskottchen</option><option value="3d-hero">3D-Objekt im ersten Bildschirm</option><option value="logo-animation">Logo-Animation</option><option value="video">Videos und Zeichentrick</option></optgroup>
-        <optgroup label="Sichtbarkeit in Google und KI"><option value="geo">Sichtbarkeit in KI (GEO)</option><option value="seo">SEO-Check und Artikel</option><option value="texts">Website-Texte</option></optgroup>
+        <option value="" data-lead="Ще не знаю">Weiß ich noch nicht – beraten Sie mich</option>
+        <optgroup label="Anfragen und Vertrieb"><option value="order-bot" data-lead="Telegram-бот для замовлень">Telegram-Bot für Bestellungen</option><option value="lead-forms" data-lead="Заявки в Telegram і Таблицю">Anfragen in Telegram und Tabelle</option></optgroup>
+        <optgroup label="Projekte"><option value="complex" data-lead="Комплексне рішення">Komplettlösung</option><option value="support" data-lead="Підтримка сайту">Website-Betreuung</option></optgroup>
+        <optgroup label="Design"><option value="redesign" data-lead="Редизайн сайту">Website-Redesign</option><option value="logo" data-lead="Логотип і набір знака">Logo und Logo-Set</option><option value="graphics" data-lead="Графіка для бізнесу">Grafik für Unternehmen</option></optgroup>
+        <optgroup label="Entwicklung"><option value="landing" data-lead="Лендинг під ключ">Landingpage</option><option value="multipage" data-lead="Сайт на кілька сторінок">Mehrseitige Website</option><option value="wordpress" data-lead="Сайт на WordPress з адмінкою">WordPress-Website mit Admin-Bereich</option><option value="shop" data-lead="Інтернет-магазин">Online-Shop</option><option value="web-app" data-lead="Вебзастосунок на замовлення">Webanwendung nach Maß</option><option value="edits" data-lead="Правки наявного сайту">Anpassungen an Ihrer Website</option></optgroup>
+        <optgroup label="Qualitätsprüfung"><option value="content-safety" data-lead="Захист сайту від поломок">Schutz vor Ausfällen</option><option value="analytics" data-lead="Аналітика та cookie">Analyse und Cookies</option></optgroup>
+        <optgroup label="3D und Video"><option value="3d-models" data-lead="3D-моделі, рендери й талісмани">3D-Modelle, Renderings, Maskottchen</option><option value="3d-hero" data-lead="3D-обʼєкт у першому екрані сайту">3D-Objekt im ersten Bildschirm</option><option value="logo-animation" data-lead="Анімація логотипа">Logo-Animation</option><option value="video" data-lead="Відео та мультфільми">Videos und Zeichentrick</option></optgroup>
+        <optgroup label="Sichtbarkeit in Google und KI"><option value="geo" data-lead="Видимість у ШІ (GEO)">Sichtbarkeit in KI (GEO)</option><option value="seo" data-lead="SEO-перевірка та статті">SEO-Check und Artikel</option><option value="texts" data-lead="Тексти для сайту">Website-Texte</option></optgroup>
         </select>
       </div>
       <div class="roama-field">
@@ -276,19 +316,24 @@
       <input type="hidden" name="utm_campaign" data-order-utm>
       <input type="hidden" name="utm_term" data-order-utm>
       <input type="hidden" name="utm_content" data-order-utm>
-
+      <div class="roama-check">
+        <input id="order-consent" name="consent" type="checkbox" required data-roama-form-message-value-missing="Ihre Einwilligung ist nötig, damit wir antworten können.">
+        <label for="order-consent">Ich stimme der <a href="/preview/de/privacy.html">Datenschutzerklärung</a> zu</label>
+      </div>
       <div class="order__actions">
-
-        <button class="button order__submit" type="submit" data-label-idle="E-Mail öffnen" data-label-busy="E-Mail öffnen">E-Mail öffnen</button>
-
-
+        <button class="button order__submit" type="submit" data-label-idle="Senden" data-label-busy="Wird gesendet …">Senden</button>
         <p class="order__status" role="status" aria-live="polite" data-order-status></p>
       </div>
     </form>
-    <template data-order-mail-done><span>Ihr E-Mail-Programm sollte sich mit der fertigen Nachricht geöffnet haben: Prüfen und senden Sie sie. Nichts passiert? Schreiben Sie an <a href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a>.</span></template>
+    <div class="order__done" data-order-done tabindex="-1" hidden>
+      <p class="order__done-title">Danke, Ihre Anfrage ist da.</p>
+      <p>Wir antworten über den angegebenen Kontakt.</p>
+      <button class="button button--ghost" type="button" data-roama-dialog-close>Schließen</button>
+    </div>
+    <template data-order-error><span>Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder schreiben Sie uns an roama.studio@gmail.com.</span></template>
 
     <div class="order__reach">
-      <p class="order__reach-text">Oder schreiben Sie uns direkt: <a class="order__mail" href="mailto:roama.studio@gmail.com">roama.studio@gmail.com</a></p>
+      <p class="order__reach-text">Oder schreiben Sie uns direkt: <span class="order__mail">roama.studio@gmail.com</span></p>
       <!-- params: lang (uk|de), contact (yes = also the e-mail and /links/ icons, used in the footer). Round 4b: our own
      sprite icons (site/assets/icons, tools/icons-r4b.mjs), the name for screen readers in the page's language,
      44 px targets, amber only on hover/focus (_studio.scss .social). -->
