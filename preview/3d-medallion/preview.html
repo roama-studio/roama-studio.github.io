@@ -1,0 +1,73 @@
+<!-- © ROAMA. All rights reserved. -->
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>TASK-0797 preview: медальйон ROAMA</title>
+<style>
+  /* rough preview of the hero medallion flight (TASK-0797); not linked from the site, noindex */
+  :root { --bg: #f7f2e8; --ink: #1c1710; --muted: #665e50; --amber: #ffc83d; --boot: 0; }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); color: var(--ink); font-family: system-ui, "Segoe UI", sans-serif; }
+  body { margin: 0; }
+  .wrap { width: min(1200px, 100% - 32px); margin: 0 auto; }
+  .hero { min-height: 100svh; display: grid; align-items: center; }
+  .hero__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center; }
+  .hero h1 { font-size: clamp(34px, 5vw, 64px); line-height: 1.02; margin: 0 0 16px; }
+  .hero p { color: var(--muted); font-size: 18px; max-width: 34ch; }
+  .anchor { aspect-ratio: 1; width: min(100%, 460px); justify-self: center; }
+  .spacer { height: 70svh; }
+  .intro { padding: 12svh 0 18svh; }
+  .intro__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .intro h2 { font-size: clamp(28px, 3.6vw, 48px); line-height: 1.05; margin: 0; }
+  .intro__side { display: grid; gap: 20px; }
+  .slot { width: 140px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, #efe7d8 70%, #e4d9c4 100%); box-shadow: inset 0 2px 8px rgb(0 0 0 / 0.12); }
+  .lead { color: var(--muted); font-size: 18px; line-height: 1.5; margin: 0; }
+  .button { display: inline-block; padding: 14px 22px; border-radius: 999px; background: var(--amber); color: var(--ink); text-decoration: none; font-weight: 600;
+            box-shadow: 0 0 calc(var(--boot) * 28px) calc(var(--boot) * 4px) rgb(255 200 61 / calc(var(--boot) * 0.55)); }
+  .more { height: 120svh; background: linear-gradient(#f7f2e8, #efe7d8); }
+  roama-medallion { position: absolute; left: 0; top: 0; display: block; width: 460px; height: 460px; z-index: 5; pointer-events: none; will-change: transform; }
+  roama-medallion img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  roama-medallion[data-live] img { display: none; }
+  roama-medallion .medallion__gl { width: 100%; height: 100%; display: block; }
+  .slot roama-medallion { position: static; width: 100%; height: 100%; transform: none !important; }
+  @media (max-width: 760px) {
+    .hero__grid, .intro__grid { grid-template-columns: 1fr; }
+    .anchor { width: min(78vw, 340px); }
+    .slot { width: 112px; }
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <h1>ROAMA — студія сайтів, магазинів і 3D</h1>
+        <p>Прокрутіть далі: медальйон опуститься на своє місце.</p>
+      </div>
+      <div class="anchor" data-medallion-anchor></div>
+    </div>
+  </section>
+  <div class="spacer"></div>
+  <section class="intro" id="intro">
+    <div class="wrap intro__grid">
+      <h2>Сайт для вашого бізнесу — від заявки до запуску</h2>
+      <div class="intro__side">
+        <div class="slot" data-medallion-slot></div>
+        <p class="lead">ROAMA — студія сайтів, магазинів і 3D для малого бізнесу. Кожен важливий крок погоджуєте ви.</p>
+        <p><a class="button" href="#intro">Замовити</a></p>
+      </div>
+    </div>
+  </section>
+  <div class="more"></div>
+
+  <roama-medallion data-medallion aria-hidden="true"><img src="/preview/3d-medallion/poster-hero.webp" alt="" width="1200" height="1200"></roama-medallion>
+  <script type="module">
+    import '/preview/3d-medallion/medallion.js'
+    import { start } from '/preview/3d-medallion/medallion-flight.js'
+    start()
+  </script>
+</body>
+</html>
